@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="GranaFácil - Controle financeiro semanal"
+    >
+
+    <title>GranaFácil - Controle Financeiro</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <a href="#inicio" class="logo">
+            💰 GranaFácil
+        </a>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#cadastro">Cadastro</a>
+            <a href="#gastos">Gastos</a>
+            <a href="#resultado">Resultado</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- ================= INÍCIO ================= -->
+
+        <section id="inicio" class="inicio">
+
+            <div class="inicio-conteudo">
+
+                <span class="tag">
+                    Controle financeiro simples
+                </span>
+
+                <h1>
+                    Organize sua semana e cuide melhor do seu dinheiro.
+                </h1>
+
+                <p>
+                    Cadastre seus dados, registre suas receitas e despesas
+                    e acompanhe automaticamente sua situação financeira.
+                </p>
+
+                <a
+                    href="#cadastro"
+                    class="botao-principal"
+                >
+                    Começar agora
+                </a>
+
+            </div>
+
+
+            <div class="cartao-saldo">
+
+                <span>
+                    Saldo da semana
+                </span>
+
+                <strong id="saldo-destaque">
+                    R$ 0,00
+                </strong>
+
+                <div class="mini-resumo">
+
+                    <div>
+                        <small>Receitas</small>
+
+                        <strong
+                            id="receitas-destaque"
+                            class="valor-positivo"
+                        >
+                            R$ 0,00
+                        </strong>
+                    </div>
+
+                    <div>
+                        <small>Despesas</small>
+
+                        <strong
+                            id="despesas-destaque"
+                            class="valor-negativo"
+                        >
+                            R$ 0,00
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CADASTRO ================= -->
+
+        <section
+            id="cadastro"
+            class="secao secao-branca"
+        >
+
+            <div class="cabecalho-secao">
+
+                <span class="tag">
+                    Primeiro passo
+                </span>
+
+                <h2>
+                    Faça seu cadastro
+                </h2>
+
+                <p>
+                    Preencha seus dados para identificar seu controle financeiro.
+                </p>
+
+            </div>
+
+
+            <form
+                id="form-cadastro"
+                class="card-formulario"
+            >
+
+                <div class="grid-cadastro">
+
+                    <div class="campo">
+
+                        <label for="nome">
+                            Nome
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Digite seu nome"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="sobrenome">
+                            Sobrenome
+                        </label>
+
+                        <input
+                            type="text"
+                            id="sobrenome"
+                            placeholder="Digite seu sobrenome"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="cpf">
+                            CPF
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cpf"
+                            maxlength="14"
+                            inputmode="numeric"
+                            placeholder="000.000.000-00"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="data-nascimento">
+                            Data de nascimento
+                        </label>
+
+                        <input
+                            type="date"
+                            id="data-nascimento"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="nome@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="telefone">
+                            Telefone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefone"
+                            maxlength="15"
+                            inputmode="numeric"
+                            placeholder="(00) 00000-0000"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="acoes">
+
+                    <button
+                        type="submit"
+                        class="botao-principal"
+                    >
+                        Salvar cadastro
+                    </button>
+
+                    <button
+                        type="button"
+                        id="limpar-cadastro"
+                        class="botao-secundario"
+                    >
+                        Limpar
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="mensagem-cadastro"
+                    class="mensagem"
+                ></p>
+
+            </form>
+
+
+            <div
+                id="cadastro-salvo"
+                class="cadastro-salvo oculto"
+            >
+
+                <div class="avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <span>
+                        Cadastro ativo
+                    </span>
+
+                    <h3 id="nome-cadastrado">
+                        Usuário
+                    </h3>
+
+                    <p id="email-cadastrado"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GASTOS ================= -->
+
+        <section
+            id="gastos"
+            class="secao secao-cinza"
+        >
+
+            <div class="cabecalho-secao">
+
+                <span class="tag">
+                    Controle semanal
+                </span>
+
+                <h2>
+                    Meus gastos da semana
+                </h2>
+
+                <p>
+                    Registre cada movimentação. Esta é a única tabela
+                    de lançamentos do sistema.
+                </p>
+
+            </div>
+
+
+            <!-- FORMULÁRIO DE LANÇAMENTO -->
+
+            <form
+                id="form-gasto"
+                class="card-formulario"
+            >
+
+                <div class="grid-gastos">
+
+                    <div class="campo">
+
+                        <label for="descricao">
+                            Descrição
+                        </label>
+
+                        <input
+                            type="text"
+                            id="descricao"
+                            placeholder="Ex.: Supermercado"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="categoria">
+                            Categoria
+                        </label>
+
+                        <select id="categoria">
+
+                            <option value="Alimentação">
+                                🍔 Alimentação
+                            </option>
+
+                            <option value="Transporte">
+                                🚌 Transporte
+                            </option>
+
+                            <option value="Casa">
+                                🏠 Casa
+                            </option>
+
+                            <option value="Saúde">
+                                🩺 Saúde
+                            </option>
+
+                            <option value="Educação">
+                                📚 Educação
+                            </option>
+
+                            <option value="Lazer">
+                                🎮 Lazer
+                            </option>
+
+                            <option value="Salário">
+                                💼 Salário
+                            </option>
+
+                            <option value="Outros">
+                                📦 Outros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="dia">
+                            Dia da semana
+                        </label>
+
+                        <select id="dia">
+
+                            <option value="Segunda-feira">
+                                Segunda-feira
+                            </option>
+
+                            <option value="Terça-feira">
+                                Terça-feira
+                            </option>
+
+                            <option value="Quarta-feira">
+                                Quarta-feira
+                            </option>
+
+                            <option value="Quinta-feira">
+                                Quinta-feira
+                            </option>
+
+                            <option value="Sexta-feira">
+                                Sexta-feira
+                            </option>
+
+                            <option value="Sábado">
+                                Sábado
+                            </option>
+
+                            <option value="Domingo">
+                                Domingo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="tipo">
+                            Tipo
+                        </label>
+
+                        <select id="tipo">
+
+                            <option value="despesa">
+                                Despesa
+                            </option>
+
+                            <option value="receita">
+                                Receita
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="valor">
+                            Valor
+                        </label>
+
+                        <input
+                            type="number"
+                            id="valor"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="botao-principal botao-adicionar"
+                    >
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- ÚNICA TABELA DO SISTEMA -->
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Dia</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Ação</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabela-gastos"></tbody>
+
+                </table>
+
+
+                <div
+                    id="tabela-vazia"
+                    class="tabela-vazia"
+                >
+
+                    <span>🧾</span>
+
+                    <h3>
+                        Nenhuma movimentação registrada
+                    </h3>
+
+                    <p>
+                        Adicione sua primeira movimentação usando o formulário acima.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="limpar-gastos"
+                class="botao-perigo"
+            >
+                Limpar todos os lançamentos
+            </button>
+
+        </section>
+
+
+        <!-- ================= RESULTADO ================= -->
+
+        <section
+            id="resultado"
+            class="secao secao-branca"
+        >
+
+            <div class="cabecalho-secao">
+
+                <span class="tag">
+                    Resultado final
+                </span>
+
+                <h2>
+                    Resumo da semana
+                </h2>
+
+                <p>
+                    Veja quanto você tem, quanto gastou e quanto vai sobrar.
+                </p>
+
+            </div>
+
+
+            <!-- DINHEIRO DISPONÍVEL -->
+
+            <div class="dinheiro-card">
+
+                <div class="dinheiro-topo">
+
+                    <span class="tag">
+                        Seu dinheiro
+                    </span>
+
+                    <h2>
+                        Quanto dinheiro você tem?
+                    </h2>
+
+                    <p>
+                        Informe o valor que você possui para comparar
+                        automaticamente com seus gastos.
+                    </p>
+
+                </div>
+
+
+                <div class="campo dinheiro-input">
+
+                    <label for="dinheiro-disponivel">
+                        Valor que você tem
+                    </label>
+
+                    <input
+                        type="number"
+                        id="dinheiro-disponivel"
+                        min="0"
+                        step="0.01"
+                        placeholder="Ex.: 500,00"
+                    >
+
+                </div>
+
+
+                <!-- RESUMO SEM TABELA -->
+
+                <div class="resultado-grid">
+
+                    <div class="resultado-item">
+
+                        <span>
+                            💰 Você tem
+                        </span>
+
+                        <strong id="valor-tenho">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="resultado-item">
+
+                        <span>
+                            📉 Você gastou
+                        </span>
+
+                        <strong
+                            id="valor-gasto"
+                            class="valor-negativo"
+                        >
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        id="resultado-restante-card"
+                        class="resultado-item destaque"
+                    >
+
+                        <span id="label-restante">
+                            💵 Vai sobrar
+                        </span>
+
+                        <strong id="valor-restante">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENSAGEM FINAL -->
+
+            <div
+                id="mensagem-resultado"
+                class="mensagem-resultado neutro"
+            >
+
+                <span id="icone-resultado">
+                    📊
+                </span>
+
+                <div>
+
+                    <h3 id="titulo-resultado">
+                        Comece a registrar seus gastos
+                    </h3>
+
+                    <p id="texto-resultado">
+                        Seu resultado financeiro aparecerá aqui.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h2>
+            💰 GranaFácil
+        </h2>
+
+        <p>
+            Organize seu dinheiro. Alcance seus objetivos.
+        </p>
+
+        <p>
+            © 2026 GranaFácil
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
