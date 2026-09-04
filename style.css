@@ -1,8 +1,8 @@
 :root {
-    --verde-escuro: #065f46;
-    --verde: #00a651;
-    --verde-hover: #008f46;
-    --verde-claro: #d1fae5;
+    --azul-marinho: #102a43;
+    --azul: #173f67;
+    --azul-hover: #0f3152;
+    --azul-claro: #e7eef6;
 
     --vermelho: #ff4545;
     --vermelho-claro: #fee2e2;
@@ -12,14 +12,15 @@
     --texto: #1f2937;
     --texto-secundario: #64748b;
 
-    --fundo: #f4f7f5;
+    --fundo: #f4f6f8;
     --branco: #ffffff;
 
     --borda: #dfe5e9;
 
     --sombra:
-        0 12px 35px rgba(15, 23, 42, 0.07);
+        0 10px 30px rgba(15, 23, 42, 0.07);
 }
+
 
 
 /* ================= RESET ================= */
@@ -84,7 +85,7 @@ select {
 
 
 .logo {
-    color: var(--verde);
+    color: var(--azul);
 
     font-size: 25px;
     font-weight: 800;
@@ -95,6 +96,7 @@ select {
 
 nav {
     display: flex;
+
     gap: 28px;
 }
 
@@ -112,7 +114,7 @@ nav a {
 
 
 nav a:hover {
-    color: var(--verde);
+    color: var(--azul);
 }
 
 
@@ -132,7 +134,7 @@ nav a:hover {
     background:
         linear-gradient(
             135deg,
-            #ecfdf5,
+            #e7eef6,
             #ffffff
         );
 }
@@ -150,9 +152,9 @@ nav a:hover {
 
     padding: 7px 15px;
 
-    color: var(--verde-hover);
+    color: var(--azul-hover);
 
-    background: var(--verde-claro);
+    background: var(--azul-claro);
 
     border-radius: 30px;
 
@@ -164,7 +166,7 @@ nav a:hover {
 .inicio h1 {
     margin-bottom: 24px;
 
-    color: var(--verde-escuro);
+    color: var(--azul-marinho);
 
     font-size: clamp(38px, 5vw, 60px);
 
@@ -209,24 +211,25 @@ nav a:hover {
 
 .botao-principal {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
     color: white;
 
-    background: var(--verde);
-
+    background: var(--azul);
+    
     text-decoration: none;
 }
 
 
 .botao-principal:hover {
-    background: var(--verde-hover);
+    background: var(--azul-hover);
 
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 20px rgba(0, 166, 81, 0.22);
+        0 8px 20px rgba(16, 42, 67, 0.22);
 }
 
 
@@ -268,20 +271,20 @@ nav a:hover {
     background:
         radial-gradient(
             circle at top right,
-            rgba(134, 239, 172, 0.25),
+            rgba(96, 165, 250, 0.25),
             transparent 35%
         ),
-        var(--verde-escuro);
+        var(--azul-marinho);
 
     border-radius: 24px;
 
     box-shadow:
-        0 20px 45px rgba(6, 95, 70, 0.25);
+        0 20px 45px rgba(16, 42, 67, 0.25);
 }
 
 
 .cartao-saldo > span {
-    color: #bbf7d0;
+    color: #bfdbfe;
 
     font-size: 15px;
 }
@@ -312,7 +315,7 @@ nav a:hover {
 
     margin-bottom: 4px;
 
-    color: #bbf7d0;
+    color: #bfdbfe;
 }
 
 
@@ -358,7 +361,7 @@ nav a:hover {
 .cabecalho-secao h2 {
     margin-bottom: 8px;
 
-    color: var(--verde-escuro);
+    color: var(--azul-marinho);
 
     font-size: clamp(30px, 4vw, 42px);
 }
@@ -454,10 +457,10 @@ nav a:hover {
 
 .campo input:focus,
 .campo select:focus {
-    border-color: var(--verde);
+    border-color: var(--azul);
 
     box-shadow:
-        0 0 0 3px rgba(0, 166, 81, 0.12);
+        0 0 0 3px rgba(23, 63, 103, 0.12);
 }
 
 
@@ -480,7 +483,7 @@ nav a:hover {
 
 
 .mensagem.sucesso {
-    color: var(--verde-hover);
+    color: var(--azul-hover);
 }
 
 
@@ -493,6 +496,7 @@ nav a:hover {
 
 .cadastro-salvo {
     display: flex;
+
     align-items: center;
 
     gap: 18px;
@@ -501,9 +505,9 @@ nav a:hover {
 
     padding: 20px;
 
-    background: #ecfdf5;
+    background: #e7eef6;
 
-    border: 1px solid #bbf7d0;
+    border: 1px solid #bfdbfe;
 
     border-radius: 15px;
 }
@@ -517,7 +521,7 @@ nav a:hover {
 
     place-items: center;
 
-    background: var(--verde-claro);
+    background: var(--azul-claro);
 
     border-radius: 50%;
 
@@ -526,15 +530,16 @@ nav a:hover {
 
 
 .cadastro-salvo span {
-    color: var(--verde-hover);
+    color: var(--azul-hover);
 
     font-size: 13px;
+
     font-weight: 800;
 }
 
 
 .cadastro-salvo h3 {
-    color: var(--verde-escuro);
+    color: var(--azul-marinho);
 }
 
 
@@ -577,7 +582,7 @@ table {
 thead {
     color: white;
 
-    background: var(--verde-escuro);
+    background: var(--azul-marinho);
 }
 
 
@@ -614,14 +619,15 @@ tbody tr:hover {
     border-radius: 30px;
 
     font-size: 12px;
+
     font-weight: 800;
 }
 
 
 .tipo.receita {
-    color: var(--verde-hover);
+    color: var(--azul-hover);
 
-    background: var(--verde-claro);
+    background: var(--azul-claro);
 }
 
 
@@ -633,7 +639,7 @@ tbody tr:hover {
 
 
 .valor-positivo {
-    color: var(--verde);
+    color: #15803d;
 }
 
 
@@ -694,11 +700,11 @@ tbody tr:hover {
     background:
         linear-gradient(
             135deg,
-            #ecfdf5,
+            #e7eef6,
             #ffffff
         );
 
-    border: 1px solid #a7f3d0;
+    border: 1px solid #bfdbfe;
 
     border-radius: 20px;
 
@@ -709,7 +715,7 @@ tbody tr:hover {
 .dinheiro-topo h2 {
     margin-bottom: 7px;
 
-    color: var(--verde-escuro);
+    color: var(--azul-marinho);
 
     font-size: 28px;
 }
@@ -731,11 +737,12 @@ tbody tr:hover {
     height: 58px;
 
     font-size: 20px;
+
     font-weight: 700;
 }
 
 
-/* ================= RESUMO SEM SEGUNDA TABELA ================= */
+/* ================= RESUMO ================= */
 
 .resultado-grid {
     display: grid;
@@ -768,6 +775,7 @@ tbody tr:hover {
     color: var(--texto-secundario);
 
     font-size: 14px;
+
     font-weight: 700;
 }
 
@@ -780,12 +788,12 @@ tbody tr:hover {
 
 
 .resultado-item.destaque {
-    border: 2px solid var(--verde);
+    border: 2px solid var(--azul);
 }
 
 
 .resultado-item.destaque strong {
-    color: var(--verde);
+    color: var(--azul);
 }
 
 
@@ -793,6 +801,7 @@ tbody tr:hover {
 
 .mensagem-resultado {
     display: flex;
+
     align-items: center;
 
     gap: 18px;
@@ -825,11 +834,11 @@ tbody tr:hover {
 
 
 .mensagem-resultado.positivo {
-    color: var(--verde-escuro);
+    color: var(--azul-marinho);
 
-    background: #ecfdf5;
+    background: #e7eef6;
 
-    border-color: #bbf7d0;
+    border-color: #bfdbfe;
 }
 
 
@@ -851,6 +860,156 @@ tbody tr:hover {
 }
 
 
+/* ================= INVESTIMENTOS ================= */
+
+.bancos-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+.banco-card {
+    padding: 24px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow: var(--sombra);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+
+.banco-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #b8c9da;
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.10);
+}
+
+
+.banco-card.selecionado {
+    border: 2px solid var(--azul);
+
+    transform: translateY(-3px);
+}
+
+
+.banco-topo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+.banco-icone {
+    display: grid;
+
+    width: 50px;
+    height: 50px;
+
+    place-items: center;
+
+    background: var(--azul-claro);
+
+    border-radius: 12px;
+
+    font-size: 24px;
+}
+
+
+.banco-card h3 {
+    margin-bottom: 2px;
+
+    color: var(--azul-marinho);
+
+    font-size: 19px;
+}
+
+
+.banco-card p {
+    color: var(--texto-secundario);
+
+    font-size: 13px;
+}
+
+
+.banco-card ul {
+    padding-left: 20px;
+
+    color: #475569;
+}
+
+
+.banco-card li {
+    margin-bottom: 7px;
+}
+
+
+.aviso-investimentos,
+.nota-fgc {
+    margin-top: 25px;
+
+    padding: 20px 22px;
+
+    border-radius: 14px;
+}
+
+
+.aviso-investimentos {
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+}
+
+
+.aviso-investimentos strong {
+    color: #9a3412;
+}
+
+
+.aviso-investimentos p {
+    margin-top: 5px;
+
+    color: #7c2d12;
+}
+
+
+.nota-fgc {
+    background: var(--azul-claro);
+
+    border: 1px solid #bfdbfe;
+}
+
+
+.nota-fgc strong {
+    color: var(--azul-marinho);
+}
+
+
+.nota-fgc p {
+    margin-top: 5px;
+
+    color: #334e68;
+}
+
+
 /* ================= FOOTER ================= */
 
 footer {
@@ -860,21 +1019,21 @@ footer {
 
     color: white;
 
-    background: var(--verde-escuro);
+    background: var(--azul-marinho);
 }
 
 
 footer h2 {
     margin-bottom: 8px;
 
-    color: #86efac;
+    color: #bfdbfe;
 }
 
 
 footer p {
     margin-bottom: 5px;
 
-    color: #bbf7d0;
+    color: #dbeafe;
 }
 
 
@@ -887,8 +1046,15 @@ footer p {
             repeat(3, 1fr);
     }
 
+
     .botao-adicionar {
         width: 100%;
+    }
+
+
+    .bancos-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
 }
@@ -941,6 +1107,11 @@ footer p {
 
 
     .resultado-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .bancos-grid {
         grid-template-columns: 1fr;
     }
 
