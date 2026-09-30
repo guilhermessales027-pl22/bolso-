@@ -1,4 +1,5 @@
 :root {
+
     --azul-marinho: #102a43;
     --azul: #173f67;
     --azul-hover: #0f3152;
@@ -22,7 +23,6 @@
 }
 
 
-
 /* ================= RESET ================= */
 
 * {
@@ -39,6 +39,7 @@ html {
 
 
 body {
+
     min-width: 320px;
 
     font-family:
@@ -64,30 +65,40 @@ select {
 /* ================= HEADER ================= */
 
 .header {
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 30px;
 
     padding: 18px 8%;
 
-    background: rgba(255, 255, 255, 0.97);
+    background:
+        rgba(255, 255, 255, 0.97);
 
-    border-bottom: 1px solid var(--borda);
+    border-bottom:
+        1px solid var(--borda);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:
+        blur(10px);
 }
 
 
 .logo {
+
     color: var(--azul);
 
     font-size: 25px;
+
     font-weight: 800;
 
     text-decoration: none;
@@ -95,6 +106,7 @@ select {
 
 
 nav {
+
     display: flex;
 
     gap: 28px;
@@ -102,9 +114,11 @@ nav {
 
 
 nav a {
+
     color: #475569;
 
     font-size: 15px;
+
     font-weight: 700;
 
     text-decoration: none;
@@ -114,6 +128,7 @@ nav a {
 
 
 nav a:hover {
+
     color: var(--azul);
 }
 
@@ -121,10 +136,13 @@ nav a:hover {
 /* ================= INÍCIO ================= */
 
 .inicio {
+
     min-height: 620px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 60px;
@@ -141,11 +159,13 @@ nav a:hover {
 
 
 .inicio-conteudo {
+
     max-width: 680px;
 }
 
 
 .tag {
+
     display: inline-block;
 
     margin-bottom: 16px;
@@ -159,22 +179,26 @@ nav a:hover {
     border-radius: 30px;
 
     font-size: 14px;
+
     font-weight: 800;
 }
 
 
 .inicio h1 {
+
     margin-bottom: 24px;
 
     color: var(--azul-marinho);
 
-    font-size: clamp(38px, 5vw, 60px);
+    font-size:
+        clamp(38px, 5vw, 60px);
 
     line-height: 1.08;
 }
 
 
 .inicio p {
+
     max-width: 600px;
 
     margin-bottom: 30px;
@@ -190,6 +214,7 @@ nav a:hover {
 .botao-principal,
 .botao-secundario,
 .botao-perigo {
+
     min-height: 48px;
 
     padding: 12px 22px;
@@ -210,30 +235,38 @@ nav a:hover {
 
 
 .botao-principal {
+
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     color: white;
 
-    background: var(--azul);
-    
+    background:
+        var(--azul);
+
     text-decoration: none;
 }
 
 
 .botao-principal:hover {
-    background: var(--azul-hover);
 
-    transform: translateY(-2px);
+    background:
+        var(--azul-hover);
+
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 8px 20px rgba(16, 42, 67, 0.22);
+        0 8px 20px
+        rgba(16, 42, 67, 0.22);
 }
 
 
 .botao-secundario {
+
     color: #374151;
 
     background: #eef2f7;
@@ -241,20 +274,24 @@ nav a:hover {
 
 
 .botao-secundario:hover {
+
     background: #e2e8f0;
 }
 
 
 .botao-perigo {
+
     margin-top: 20px;
 
     color: var(--vermelho);
 
-    background: var(--vermelho-claro);
+    background:
+        var(--vermelho-claro);
 }
 
 
 .botao-perigo:hover {
+
     background: #fecaca;
 }
 
@@ -262,6 +299,7 @@ nav a:hover {
 /* ================= CARTÃO DO INÍCIO ================= */
 
 .cartao-saldo {
+
     width: 390px;
 
     padding: 36px;
@@ -279,11 +317,13 @@ nav a:hover {
     border-radius: 24px;
 
     box-shadow:
-        0 20px 45px rgba(16, 42, 67, 0.25);
+        0 20px 45px
+        rgba(16, 42, 67, 0.25);
 }
 
 
 .cartao-saldo > span {
+
     color: #bfdbfe;
 
     font-size: 15px;
@@ -291,6 +331,7 @@ nav a:hover {
 
 
 .cartao-saldo > strong {
+
     display: block;
 
     margin: 8px 0 30px;
@@ -302,6 +343,7 @@ nav a:hover {
 
 
 .mini-resumo {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -311,6 +353,7 @@ nav a:hover {
 
 
 .mini-resumo small {
+
     display: block;
 
     margin-bottom: 4px;
@@ -320,16 +363,19 @@ nav a:hover {
 
 
 .mini-resumo strong {
+
     font-size: 18px;
 }
 
 
 .cartao-saldo .valor-positivo {
+
     color: #86efac;
 }
 
 
 .cartao-saldo .valor-negativo {
+
     color: #fca5a5;
 }
 
@@ -337,21 +383,27 @@ nav a:hover {
 /* ================= SEÇÕES ================= */
 
 .secao {
+
     padding: 85px 8%;
 }
 
 
 .secao-branca {
-    background: var(--branco);
+
+    background:
+        var(--branco);
 }
 
 
 .secao-cinza {
-    background: var(--fundo);
+
+    background:
+        var(--fundo);
 }
 
 
 .cabecalho-secao {
+
     max-width: 750px;
 
     margin-bottom: 32px;
@@ -359,16 +411,21 @@ nav a:hover {
 
 
 .cabecalho-secao h2 {
+
     margin-bottom: 8px;
 
-    color: var(--azul-marinho);
+    color:
+        var(--azul-marinho);
 
-    font-size: clamp(30px, 4vw, 42px);
+    font-size:
+        clamp(30px, 4vw, 42px);
 }
 
 
 .cabecalho-secao p {
-    color: var(--texto-secundario);
+
+    color:
+        var(--texto-secundario);
 
     font-size: 17px;
 }
@@ -377,19 +434,24 @@ nav a:hover {
 /* ================= FORMULÁRIOS ================= */
 
 .card-formulario {
+
     padding: 30px;
 
-    background: var(--branco);
+    background:
+        var(--branco);
 
-    border: 1px solid var(--borda);
+    border:
+        1px solid var(--borda);
 
     border-radius: 18px;
 
-    box-shadow: var(--sombra);
+    box-shadow:
+        var(--sombra);
 }
 
 
 .grid-cadastro {
+
     display: grid;
 
     grid-template-columns:
@@ -400,6 +462,7 @@ nav a:hover {
 
 
 .grid-gastos {
+
     display: grid;
 
     grid-template-columns:
@@ -417,6 +480,7 @@ nav a:hover {
 
 
 .campo {
+
     display: flex;
 
     flex-direction: column;
@@ -426,15 +490,18 @@ nav a:hover {
 
 
 .campo label {
+
     color: #334155;
 
     font-size: 14px;
+
     font-weight: 800;
 }
 
 
 .campo input,
 .campo select {
+
     width: 100%;
 
     height: 48px;
@@ -443,9 +510,11 @@ nav a:hover {
 
     color: var(--texto);
 
-    background: white;
+    background:
+        white;
 
-    border: 1px solid #cbd5e1;
+    border:
+        1px solid #cbd5e1;
 
     border-radius: 9px;
 
@@ -457,14 +526,18 @@ nav a:hover {
 
 .campo input:focus,
 .campo select:focus {
-    border-color: var(--azul);
+
+    border-color:
+        var(--azul);
 
     box-shadow:
-        0 0 0 3px rgba(23, 63, 103, 0.12);
+        0 0 0 3px
+        rgba(23, 63, 103, 0.12);
 }
 
 
 .acoes {
+
     display: flex;
 
     gap: 12px;
@@ -474,6 +547,7 @@ nav a:hover {
 
 
 .mensagem {
+
     min-height: 24px;
 
     margin-top: 12px;
@@ -483,18 +557,23 @@ nav a:hover {
 
 
 .mensagem.sucesso {
-    color: var(--azul-hover);
+
+    color:
+        var(--azul-hover);
 }
 
 
 .mensagem.erro {
-    color: var(--vermelho);
+
+    color:
+        var(--vermelho);
 }
 
 
 /* ================= CADASTRO SALVO ================= */
 
 .cadastro-salvo {
+
     display: flex;
 
     align-items: center;
@@ -505,23 +584,28 @@ nav a:hover {
 
     padding: 20px;
 
-    background: #e7eef6;
+    background:
+        #e7eef6;
 
-    border: 1px solid #bfdbfe;
+    border:
+        1px solid #bfdbfe;
 
     border-radius: 15px;
 }
 
 
 .cadastro-salvo .avatar {
+
     display: grid;
 
     width: 55px;
+
     height: 55px;
 
     place-items: center;
 
-    background: var(--azul-claro);
+    background:
+        var(--azul-claro);
 
     border-radius: 50%;
 
@@ -530,7 +614,9 @@ nav a:hover {
 
 
 .cadastro-salvo span {
-    color: var(--azul-hover);
+
+    color:
+        var(--azul-hover);
 
     font-size: 13px;
 
@@ -539,16 +625,21 @@ nav a:hover {
 
 
 .cadastro-salvo h3 {
-    color: var(--azul-marinho);
+
+    color:
+        var(--azul-marinho);
 }
 
 
 .cadastro-salvo p {
-    color: var(--texto-secundario);
+
+    color:
+        var(--texto-secundario);
 }
 
 
 .oculto {
+
     display: none;
 }
 
@@ -556,38 +647,47 @@ nav a:hover {
 /* ================= TABELA ================= */
 
 .tabela-container {
+
     margin-top: 30px;
 
     overflow-x: auto;
 
-    background: white;
+    background:
+        white;
 
-    border: 1px solid var(--borda);
+    border:
+        1px solid var(--borda);
 
     border-radius: 17px;
 
-    box-shadow: var(--sombra);
+    box-shadow:
+        var(--sombra);
 }
 
 
 table {
+
     width: 100%;
 
     min-width: 850px;
 
-    border-collapse: collapse;
+    border-collapse:
+        collapse;
 }
 
 
 thead {
+
     color: white;
 
-    background: var(--azul-marinho);
+    background:
+        var(--azul-marinho);
 }
 
 
 th,
 td {
+
     padding: 17px;
 
     text-align: left;
@@ -595,23 +695,29 @@ td {
 
 
 th {
+
     font-size: 14px;
 }
 
 
 td {
-    border-bottom: 1px solid var(--borda);
+
+    border-bottom:
+        1px solid var(--borda);
 
     font-size: 14px;
 }
 
 
 tbody tr:hover {
-    background: #f8fafc;
+
+    background:
+        #f8fafc;
 }
 
 
 .tipo {
+
     display: inline-block;
 
     padding: 5px 10px;
@@ -625,35 +731,48 @@ tbody tr:hover {
 
 
 .tipo.receita {
-    color: var(--azul-hover);
 
-    background: var(--azul-claro);
+    color:
+        var(--azul-hover);
+
+    background:
+        var(--azul-claro);
 }
 
 
 .tipo.despesa {
-    color: var(--vermelho);
 
-    background: var(--vermelho-claro);
+    color:
+        var(--vermelho);
+
+    background:
+        var(--vermelho-claro);
 }
 
 
 .valor-positivo {
-    color: #15803d;
+
+    color:
+        #15803d;
 }
 
 
 .valor-negativo {
-    color: var(--vermelho);
+
+    color:
+        var(--vermelho);
 }
 
 
 .botao-excluir {
+
     padding: 8px 12px;
 
-    color: var(--vermelho);
+    color:
+        var(--vermelho);
 
-    background: var(--vermelho-claro);
+    background:
+        var(--vermelho-claro);
 
     border: none;
 
@@ -666,11 +785,14 @@ tbody tr:hover {
 
 
 .botao-excluir:hover {
-    background: #fecaca;
+
+    background:
+        #fecaca;
 }
 
 
 .tabela-vazia {
+
     padding: 55px 20px;
 
     text-align: center;
@@ -678,23 +800,29 @@ tbody tr:hover {
 
 
 .tabela-vazia span {
+
     font-size: 45px;
 }
 
 
 .tabela-vazia h3 {
-    margin: 10px 0 5px;
+
+    margin:
+        10px 0 5px;
 }
 
 
 .tabela-vazia p {
-    color: var(--texto-secundario);
+
+    color:
+        var(--texto-secundario);
 }
 
 
 /* ================= RESULTADO ================= */
 
 .dinheiro-card {
+
     padding: 32px;
 
     background:
@@ -704,29 +832,36 @@ tbody tr:hover {
             #ffffff
         );
 
-    border: 1px solid #bfdbfe;
+    border:
+        1px solid #bfdbfe;
 
     border-radius: 20px;
 
-    box-shadow: var(--sombra);
+    box-shadow:
+        var(--sombra);
 }
 
 
 .dinheiro-topo h2 {
+
     margin-bottom: 7px;
 
-    color: var(--azul-marinho);
+    color:
+        var(--azul-marinho);
 
     font-size: 28px;
 }
 
 
 .dinheiro-topo p {
-    color: var(--texto-secundario);
+
+    color:
+        var(--texto-secundario);
 }
 
 
 .dinheiro-input {
+
     max-width: 480px;
 
     margin-top: 25px;
@@ -734,6 +869,7 @@ tbody tr:hover {
 
 
 .dinheiro-input input {
+
     height: 58px;
 
     font-size: 20px;
@@ -745,6 +881,7 @@ tbody tr:hover {
 /* ================= RESUMO ================= */
 
 .resultado-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -757,22 +894,27 @@ tbody tr:hover {
 
 
 .resultado-item {
+
     padding: 23px;
 
-    background: white;
+    background:
+        white;
 
-    border: 1px solid var(--borda);
+    border:
+        1px solid var(--borda);
 
     border-radius: 15px;
 }
 
 
 .resultado-item span {
+
     display: block;
 
     margin-bottom: 8px;
 
-    color: var(--texto-secundario);
+    color:
+        var(--texto-secundario);
 
     font-size: 14px;
 
@@ -781,6 +923,7 @@ tbody tr:hover {
 
 
 .resultado-item strong {
+
     display: block;
 
     font-size: 27px;
@@ -788,18 +931,23 @@ tbody tr:hover {
 
 
 .resultado-item.destaque {
-    border: 2px solid var(--azul);
+
+    border:
+        2px solid var(--azul);
 }
 
 
 .resultado-item.destaque strong {
-    color: var(--azul);
+
+    color:
+        var(--azul);
 }
 
 
 /* ================= MENSAGEM FINAL ================= */
 
 .mensagem-resultado {
+
     display: flex;
 
     align-items: center;
@@ -817,223 +965,181 @@ tbody tr:hover {
 
 
 .mensagem-resultado > span {
+
     font-size: 34px;
 }
 
 
 .mensagem-resultado h3 {
+
     margin-bottom: 3px;
 }
 
 
 .mensagem-resultado p {
-    color: inherit;
+
+    color:
+        inherit;
 
     opacity: 0.8;
 }
 
 
 .mensagem-resultado.positivo {
-    color: var(--azul-marinho);
 
-    background: #e7eef6;
+    color:
+        var(--azul-marinho);
 
-    border-color: #bfdbfe;
+    background:
+        #e7eef6;
+
+    border-color:
+        #bfdbfe;
 }
 
 
 .mensagem-resultado.negativo {
-    color: #991b1b;
 
-    background: #fef2f2;
+    color:
+        #991b1b;
 
-    border-color: #fecaca;
+    background:
+        #fef2f2;
+
+    border-color:
+        #fecaca;
 }
 
 
 .mensagem-resultado.neutro {
-    color: #374151;
 
-    background: #f8fafc;
+    color:
+        #374151;
 
-    border-color: var(--borda);
+    background:
+        #f8fafc;
+
+    border-color:
+        var(--borda);
 }
 
 
-/* ================= INVESTIMENTOS ================= */
+/* ================= NOVA PARTE: INVESTIMENTOS ================= */
 
-.bancos-grid {
-    display: grid;
+.secao-investimentos {
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #e7eef6,
+            #ffffff
+        );
 }
 
 
-.banco-card {
-    padding: 24px;
+.investimentos-acao {
 
-    background: var(--branco);
-
-    border: 1px solid var(--borda);
-
-    border-radius: 17px;
-
-    box-shadow: var(--sombra);
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        border-color 0.2s;
-}
-
-
-.banco-card:hover {
-    transform: translateY(-4px);
-
-    border-color: #b8c9da;
-
-    box-shadow:
-        0 15px 35px rgba(15, 23, 42, 0.10);
-}
-
-
-.banco-card.selecionado {
-    border: 2px solid var(--azul);
-
-    transform: translateY(-3px);
-}
-
-
-.banco-topo {
     display: flex;
 
     align-items: center;
 
-    gap: 14px;
+    justify-content: flex-start;
 
-    margin-bottom: 20px;
+    margin-top: 25px;
 }
 
 
-.banco-icone {
-    display: grid;
+.botao-investimentos {
 
-    width: 50px;
-    height: 50px;
+    display: inline-flex;
 
-    place-items: center;
+    align-items: center;
 
-    background: var(--azul-claro);
+    justify-content: center;
+
+    min-height: 55px;
+
+    padding: 14px 30px;
+
+    color: white;
+
+    background:
+        var(--azul-marinho);
+
+    border:
+        none;
 
     border-radius: 12px;
 
-    font-size: 24px;
+    font-size: 16px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 20px
+        rgba(16, 42, 67, 0.18);
+
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 
-.banco-card h3 {
-    margin-bottom: 2px;
+.botao-investimentos:hover {
 
-    color: var(--azul-marinho);
+    background:
+        var(--azul-hover);
 
-    font-size: 19px;
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(16, 42, 67, 0.25);
 }
 
 
-.banco-card p {
-    color: var(--texto-secundario);
+.botao-investimentos:active {
 
-    font-size: 13px;
-}
-
-
-.banco-card ul {
-    padding-left: 20px;
-
-    color: #475569;
-}
-
-
-.banco-card li {
-    margin-bottom: 7px;
-}
-
-
-.aviso-investimentos,
-.nota-fgc {
-    margin-top: 25px;
-
-    padding: 20px 22px;
-
-    border-radius: 14px;
-}
-
-
-.aviso-investimentos {
-    background: #fff7ed;
-
-    border: 1px solid #fed7aa;
-}
-
-
-.aviso-investimentos strong {
-    color: #9a3412;
-}
-
-
-.aviso-investimentos p {
-    margin-top: 5px;
-
-    color: #7c2d12;
-}
-
-
-.nota-fgc {
-    background: var(--azul-claro);
-
-    border: 1px solid #bfdbfe;
-}
-
-
-.nota-fgc strong {
-    color: var(--azul-marinho);
-}
-
-
-.nota-fgc p {
-    margin-top: 5px;
-
-    color: #334e68;
+    transform:
+        translateY(0);
 }
 
 
 /* ================= FOOTER ================= */
 
 footer {
-    padding: 50px 8%;
+
+    padding:
+        50px 8%;
 
     text-align: center;
 
     color: white;
 
-    background: var(--azul-marinho);
+    background:
+        var(--azul-marinho);
 }
 
 
 footer h2 {
+
     margin-bottom: 8px;
 
-    color: #bfdbfe;
+    color:
+        #bfdbfe;
 }
 
 
 footer p {
+
     margin-bottom: 5px;
 
-    color: #dbeafe;
+    color:
+        #dbeafe;
 }
 
 
@@ -1042,19 +1148,15 @@ footer p {
 @media (max-width: 1150px) {
 
     .grid-gastos {
+
         grid-template-columns:
             repeat(3, 1fr);
     }
 
 
     .botao-adicionar {
+
         width: 100%;
-    }
-
-
-    .bancos-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
     }
 
 }
@@ -1063,56 +1165,67 @@ footer p {
 @media (max-width: 900px) {
 
     .header {
+
         flex-direction: column;
 
-        padding: 15px 5%;
+        padding:
+            15px 5%;
     }
 
 
     nav {
-        gap: 15px 22px;
+
+        gap:
+            15px 22px;
 
         flex-wrap: wrap;
 
-        justify-content: center;
+        justify-content:
+            center;
     }
 
 
     .inicio {
+
         flex-direction: column;
 
-        padding: 70px 5%;
+        padding:
+            70px 5%;
 
-        text-align: center;
+        text-align:
+            center;
     }
 
 
     .inicio p {
-        margin-inline: auto;
+
+        margin-inline:
+            auto;
     }
 
 
     .cartao-saldo {
+
         width: 100%;
 
         max-width: 430px;
 
-        text-align: left;
+        text-align:
+            left;
     }
 
 
     .secao {
-        padding: 70px 5%;
+
+        padding:
+            70px 5%;
     }
 
 
     .resultado-grid {
-        grid-template-columns: 1fr;
-    }
 
-
-    .bancos-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 }
@@ -1122,27 +1235,51 @@ footer p {
 
     .grid-cadastro,
     .grid-gastos {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
 
     .card-formulario {
-        padding: 22px;
+
+        padding:
+            22px;
     }
 
 
     .acoes {
-        flex-direction: column;
+
+        flex-direction:
+            column;
     }
 
 
     .acoes button {
+
         width: 100%;
     }
 
 
     .dinheiro-card {
-        padding: 22px;
+
+        padding:
+            22px;
+    }
+
+
+    .investimentos-acao {
+
+        width: 100%;
+    }
+
+
+    .botao-investimentos {
+
+        width: 100%;
+
+        text-align:
+            center;
     }
 
 }
@@ -1151,17 +1288,23 @@ footer p {
 @media (max-width: 450px) {
 
     .mini-resumo {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
 
     .cartao-saldo {
-        padding: 28px;
+
+        padding:
+            28px;
     }
 
 
     .mensagem-resultado {
-        align-items: flex-start;
+
+        align-items:
+            flex-start;
     }
 
 }
