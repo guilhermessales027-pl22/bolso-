@@ -2,17 +2,26 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
         content="GranaFácil - Controle financeiro semanal"
     >
 
-    <title>Bolso + - Controle Financeiro</title>
+    <title>Bolso+ - Controle Financeiro</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 
@@ -22,15 +31,35 @@
 
     <header class="header">
 
-        <a href="#inicio" class="logo">
+        <a
+            href="#inicio"
+            class="logo"
+        >
             💰 Bolso+
         </a>
 
         <nav>
-            <a href="#inicio">Início</a>
-            <a href="#cadastro">Cadastro</a>
-            <a href="#gastos">Gastos</a>
-            <a href="#resultado">Resultado</a>
+
+            <a href="#inicio">
+                Início
+            </a>
+
+            <a href="#cadastro">
+                Cadastro
+            </a>
+
+            <a href="#gastos">
+                Gastos
+            </a>
+
+            <a href="#resultado">
+                Resultado
+            </a>
+
+            <a href="#investimentos">
+                Investimentos
+            </a>
+
         </nav>
 
     </header>
@@ -40,7 +69,10 @@
 
         <!-- ================= INÍCIO ================= -->
 
-        <section id="inicio" class="inicio">
+        <section
+            id="inicio"
+            class="inicio"
+        >
 
             <div class="inicio-conteudo">
 
@@ -80,7 +112,10 @@
                 <div class="mini-resumo">
 
                     <div>
-                        <small>Receitas</small>
+
+                        <small>
+                            Receitas
+                        </small>
 
                         <strong
                             id="receitas-destaque"
@@ -88,10 +123,15 @@
                         >
                             R$ 0,00
                         </strong>
+
                     </div>
 
+
                     <div>
-                        <small>Despesas</small>
+
+                        <small>
+                            Despesas
+                        </small>
 
                         <strong
                             id="despesas-destaque"
@@ -99,6 +139,7 @@
                         >
                             R$ 0,00
                         </strong>
+
                     </div>
 
                 </div>
@@ -321,8 +362,6 @@
             </div>
 
 
-            <!-- FORMULÁRIO DE LANÇAMENTO -->
-
             <form
                 id="form-gasto"
                 class="card-formulario"
@@ -483,8 +522,6 @@
             </form>
 
 
-            <!-- ÚNICA TABELA DO SISTEMA -->
-
             <div class="tabela-container">
 
                 <table>
@@ -492,15 +529,35 @@
                     <thead>
 
                         <tr>
-                            <th>Descrição</th>
-                            <th>Categoria</th>
-                            <th>Dia</th>
-                            <th>Tipo</th>
-                            <th>Valor</th>
-                            <th>Ação</th>
+
+                            <th>
+                                Descrição
+                            </th>
+
+                            <th>
+                                Categoria
+                            </th>
+
+                            <th>
+                                Dia
+                            </th>
+
+                            <th>
+                                Tipo
+                            </th>
+
+                            <th>
+                                Valor
+                            </th>
+
+                            <th>
+                                Ação
+                            </th>
+
                         </tr>
 
                     </thead>
+
 
                     <tbody id="tabela-gastos"></tbody>
 
@@ -512,7 +569,9 @@
                     class="tabela-vazia"
                 >
 
-                    <span>🧾</span>
+                    <span>
+                        🧾
+                    </span>
 
                     <h3>
                         Nenhuma movimentação registrada
@@ -562,8 +621,6 @@
             </div>
 
 
-            <!-- DINHEIRO DISPONÍVEL -->
-
             <div class="dinheiro-card">
 
                 <div class="dinheiro-topo">
@@ -600,8 +657,6 @@
 
                 </div>
 
-
-                <!-- RESUMO SEM TABELA -->
 
                 <div class="resultado-grid">
 
@@ -654,8 +709,6 @@
             </div>
 
 
-            <!-- MENSAGEM FINAL -->
-
             <div
                 id="mensagem-resultado"
                 class="mensagem-resultado neutro"
@@ -676,6 +729,47 @@
                     </p>
 
                 </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= INVESTIMENTOS ================= -->
+
+        <section
+            id="investimentos"
+            class="secao secao-investimentos"
+        >
+
+            <div class="cabecalho-secao">
+
+                <span class="tag">
+                    Próximo passo
+                </span>
+
+                <h2>
+                    Aonde eu posso investir?
+                </h2>
+
+                <p>
+                    Quer conhecer algumas instituições onde você pode
+                    pesquisar opções de investimentos?
+                </p>
+
+            </div>
+
+
+            <div class="investimentos-acao">
+
+                <a
+                    href="investimentos.html"
+                    class="botao-investimentos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Aonde eu posso investir?
+                </a>
 
             </div>
 
