@@ -13,33 +13,32 @@ const CHAVE_DINHEIRO = "granaFacilDinheiro";
    FUNÇÕES DO LOCAL STORAGE
 ========================================================= */
 
-function carregarJSON(chave, valorPadrao) {
-
+function carregarJSON(chave, padrao) {
     try {
-
         const valor = localStorage.getItem(chave);
 
-        if (!valor) {
-            return valorPadrao;
+        if (valor === null) {
+            return padrao;
         }
 
         return JSON.parse(valor);
 
     } catch (erro) {
-
         console.error("Erro ao carregar dados:", erro);
-
-        return valorPadrao;
+        return padrao;
     }
 }
 
 
 function salvarJSON(chave, valor) {
-
-    localStorage.setItem(
-        chave,
-        JSON.stringify(valor)
-    );
+    try {
+        localStorage.setItem(
+            chave,
+            JSON.stringify(valor)
+        );
+    } catch (erro) {
+        console.error("Erro ao salvar dados:", erro);
+    }
 }
 
 
@@ -137,7 +136,7 @@ const limparGastos =
 
 
 /* =========================================================
-   ELEMENTOS - INÍCIO
+   ELEMENTOS - RESUMO
 ========================================================= */
 
 const saldoDestaque =
@@ -218,18 +217,9 @@ function formatarCPF(valor) {
     return valor
         .replace(/\D/g, "")
         .slice(0, 11)
-        .replace(
-            /(\d{3})(\d)/,
-            "$1.$2"
-        )
-        .replace(
-            /(\d{3})(\d)/,
-            "$1.$2"
-        )
-        .replace(
-            /(\d{3})(\d{1,2})$/,
-            "$1-$2"
-        );
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 }
 
 
@@ -242,67 +232,45 @@ function validarCPF(cpf) {
         numeros.length !== 11 ||
         /^(\d)\1+$/.test(numeros)
     ) {
-
         return false;
     }
 
-
     let soma = 0;
 
-
-    for (
-        let i = 0;
-        i < 9;
-        i++
-    ) {
-
+    for (let i = 0; i < 9; i++) {
         soma +=
             Number(numeros[i]) *
             (10 - i);
     }
 
-
     let primeiroDigito =
         (soma * 10) % 11;
-
 
     if (primeiroDigito === 10) {
         primeiroDigito = 0;
     }
 
-
     if (
         primeiroDigito !==
         Number(numeros[9])
     ) {
-
         return false;
     }
 
-
     soma = 0;
 
-
-    for (
-        let i = 0;
-        i < 10;
-        i++
-    ) {
-
+    for (let i = 0; i < 10; i++) {
         soma +=
             Number(numeros[i]) *
             (11 - i);
     }
 
-
     let segundoDigito =
         (soma * 10) % 11;
-
 
     if (segundoDigito === 10) {
         segundoDigito = 0;
     }
-
 
     return (
         segundoDigito ===
@@ -322,7 +290,6 @@ function formatarTelefone(valor) {
             .replace(/\D/g, "")
             .slice(0, 11);
 
-
     if (numeros.length <= 10) {
 
         return numeros
@@ -335,7 +302,6 @@ function formatarTelefone(valor) {
                 "$1-$2"
             );
     }
-
 
     return numeros
         .replace(
@@ -353,10 +319,7 @@ function formatarTelefone(valor) {
    MENSAGEM DO CADASTRO
 ========================================================= */
 
-function mostrarMensagemCadastro(
-    texto,
-    tipo
-) {
+function mostrarMensagemCadastro(texto, tipo) {
 
     if (!mensagemCadastro) {
         return;
@@ -381,9 +344,7 @@ if (cpfInput) {
         function () {
 
             this.value =
-                formatarCPF(
-                    this.value
-                );
+                formatarCPF(this.value);
 
         }
     );
@@ -401,9 +362,7 @@ if (telefoneInput) {
         function () {
 
             this.value =
-                formatarTelefone(
-                    this.value
-                );
+                formatarTelefone(this.value);
 
         }
     );
@@ -422,23 +381,7 @@ if (formCadastro) {
 
             evento.preventDefault();
 
-
-            /* Verifica se todos os elementos existem */
-
-            if (
-                !nomeInput ||
-                !sobrenomeInput ||
-                !cpfInput ||
-                !nascimentoInput ||
-                !emailInput ||
-                !telefoneInput
-            ) {
-
-                return;
-            }
-
-
-            /* Valida CPF */
+            /* Verifica CPF */
 
             if (
                 !validarCPF(
@@ -457,7 +400,7 @@ if (formCadastro) {
             }
 
 
-            /* Cria o cadastro */
+            /* Cria cadastro */
 
             cadastro = {
 
@@ -482,7 +425,7 @@ if (formCadastro) {
             };
 
 
-            /* Salva no navegador */
+            /* Salva */
 
             salvarJSON(
                 CHAVE_CADASTRO,
@@ -490,7 +433,7 @@ if (formCadastro) {
             );
 
 
-            /* Mostra o cartão do cadastro */
+            /* Mostra cadastro */
 
             mostrarCadastro();
 
@@ -504,29 +447,12 @@ if (formCadastro) {
 
 
             /*
-               A mensagem permanece na tela
-               por 5 segundos.
-            */
-
-            setTimeout(
-                function () {
-
-                    if (
-                        mensagemCadastro &&
-                        mensagemCadastro.textContent ===
-                        "Cadastro salvo com sucesso!"
-                    ) {
-
-                        mensagemCadastro.textContent = "";
-
-                        mensagemCadastro.className =
-                            "mensagem";
-
-                    }
-
-                },
-                5000
-            );
+             * NÃO vamos apagar a mensagem
+             * automaticamente.
+             *
+             * Ela ficará na tela até o usuário
+             * salvar novamente ou limpar o cadastro.
+             */
 
         }
     );
@@ -546,7 +472,6 @@ function mostrarCadastro() {
             cadastroSalvo.classList.add(
                 "oculto"
             );
-
         }
 
         return;
@@ -556,16 +481,20 @@ function mostrarCadastro() {
     if (nomeCadastrado) {
 
         nomeCadastrado.textContent =
-            `${cadastro.nome} ${cadastro.sobrenome}`;
-
+            `${cadastro.nome || ""} ${cadastro.sobrenome || ""}`.trim();
     }
 
 
     if (emailCadastrado) {
 
-        emailCadastrado.textContent =
-            `${cadastro.email} • ${cadastro.telefone}`;
+        const email =
+            cadastro.email || "";
 
+        const telefone =
+            cadastro.telefone || "";
+
+        emailCadastrado.textContent =
+            `${email} • ${telefone}`;
     }
 
 
@@ -574,13 +503,12 @@ function mostrarCadastro() {
         cadastroSalvo.classList.remove(
             "oculto"
         );
-
     }
 }
 
 
 /* =========================================================
-   PREENCHER CADASTRO SALVO
+   PREENCHER CADASTRO
 ========================================================= */
 
 function preencherCadastro() {
@@ -591,50 +519,38 @@ function preencherCadastro() {
 
 
     if (nomeInput) {
-
         nomeInput.value =
             cadastro.nome || "";
-
     }
 
 
     if (sobrenomeInput) {
-
         sobrenomeInput.value =
             cadastro.sobrenome || "";
-
     }
 
 
     if (cpfInput) {
-
         cpfInput.value =
             cadastro.cpf || "";
-
     }
 
 
     if (nascimentoInput) {
-
         nascimentoInput.value =
             cadastro.dataNascimento || "";
-
     }
 
 
     if (emailInput) {
-
         emailInput.value =
             cadastro.email || "";
-
     }
 
 
     if (telefoneInput) {
-
         telefoneInput.value =
             cadastro.telefone || "";
-
     }
 }
 
@@ -651,16 +567,13 @@ if (limparCadastro) {
 
             cadastro = null;
 
-
             localStorage.removeItem(
                 CHAVE_CADASTRO
             );
 
 
             if (formCadastro) {
-
                 formCadastro.reset();
-
             }
 
 
@@ -669,7 +582,6 @@ if (limparCadastro) {
                 cadastroSalvo.classList.add(
                     "oculto"
                 );
-
             }
 
 
@@ -677,7 +589,6 @@ if (limparCadastro) {
                 "Cadastro removido.",
                 "sucesso"
             );
-
         }
     );
 }
@@ -699,11 +610,8 @@ if (formGasto) {
             const descricao =
                 descricaoInput.value.trim();
 
-
             const valor =
-                Number(
-                    valorInput.value
-                );
+                Number(valorInput.value);
 
 
             if (
@@ -711,7 +619,6 @@ if (formGasto) {
                 !valor ||
                 valor <= 0
             ) {
-
                 return;
             }
 
@@ -735,7 +642,6 @@ if (formGasto) {
 
                 valor:
                     valor
-
             };
 
 
@@ -756,7 +662,6 @@ if (formGasto) {
             renderizarGastos();
 
             atualizarResumo();
-
         }
     );
 }
@@ -782,7 +687,6 @@ function renderizarGastos() {
 
             tabelaVazia.style.display =
                 "block";
-
         }
 
         return;
@@ -793,7 +697,6 @@ function renderizarGastos() {
 
         tabelaVazia.style.display =
             "none";
-
     }
 
 
@@ -901,7 +804,6 @@ function renderizarGastos() {
 
 
             tabelaGastos.appendChild(tr);
-
         }
     );
 }
@@ -936,7 +838,7 @@ function excluirGasto(id) {
 
 
 /* =========================================================
-   LIMPAR TODOS OS GASTOS
+   LIMPAR GASTOS
 ========================================================= */
 
 if (limparGastos) {
@@ -973,7 +875,6 @@ if (limparGastos) {
             renderizarGastos();
 
             atualizarResumo();
-
         }
     );
 }
@@ -986,26 +887,28 @@ if (limparGastos) {
 function calcularResumo() {
 
     let receitas = 0;
+
     let despesas = 0;
 
 
     gastos.forEach(
         function (gasto) {
 
+            const valor =
+                Number(gasto.valor) || 0;
+
+
             if (
                 gasto.tipo === "receita"
             ) {
 
-                receitas +=
-                    Number(gasto.valor);
+                receitas += valor;
 
             } else {
 
-                despesas +=
-                    Number(gasto.valor);
+                despesas += valor;
 
             }
-
         }
     );
 
@@ -1039,7 +942,6 @@ function atualizarResumo() {
 
         receitasDestaque.textContent =
             moeda(resumo.receitas);
-
     }
 
 
@@ -1047,7 +949,6 @@ function atualizarResumo() {
 
         despesasDestaque.textContent =
             moeda(resumo.despesas);
-
     }
 
 
@@ -1055,7 +956,6 @@ function atualizarResumo() {
 
         saldoDestaque.textContent =
             moeda(resumo.saldo);
-
     }
 
 
@@ -1088,7 +988,6 @@ if (dinheiroInput) {
 
 
             atualizarResultado();
-
         }
     );
 }
@@ -1105,7 +1004,6 @@ function atualizarResultado() {
         !valorGasto ||
         !valorRestante
     ) {
-
         return;
     }
 
@@ -1141,7 +1039,6 @@ function atualizarResultado() {
 
             labelRestante.textContent =
                 "💵 Vai sobrar";
-
         }
 
 
@@ -1153,7 +1050,6 @@ function atualizarResultado() {
 
             resultadoRestanteCard.style.borderColor =
                 "#173f67";
-
         }
 
 
@@ -1161,7 +1057,6 @@ function atualizarResultado() {
 
             mensagemResultado.className =
                 "mensagem-resultado positivo";
-
         }
 
 
@@ -1169,7 +1064,6 @@ function atualizarResultado() {
 
             iconeResultado.textContent =
                 "💰";
-
         }
 
 
@@ -1177,7 +1071,6 @@ function atualizarResultado() {
 
             tituloResultado.textContent =
                 "Seu dinheiro é suficiente";
-
         }
 
 
@@ -1185,7 +1078,6 @@ function atualizarResultado() {
 
             textoResultado.textContent =
                 `Depois das despesas registradas, você terá ${moeda(restante)} disponíveis.`;
-
         }
 
     } else {
@@ -1194,7 +1086,6 @@ function atualizarResultado() {
 
             labelRestante.textContent =
                 "⚠️ Vai faltar";
-
         }
 
 
@@ -1206,7 +1097,6 @@ function atualizarResultado() {
 
             resultadoRestanteCard.style.borderColor =
                 "#ff4545";
-
         }
 
 
@@ -1214,7 +1104,6 @@ function atualizarResultado() {
 
             mensagemResultado.className =
                 "mensagem-resultado negativo";
-
         }
 
 
@@ -1222,7 +1111,6 @@ function atualizarResultado() {
 
             iconeResultado.textContent =
                 "⚠️";
-
         }
 
 
@@ -1230,7 +1118,6 @@ function atualizarResultado() {
 
             tituloResultado.textContent =
                 "Atenção aos gastos";
-
         }
 
 
@@ -1238,9 +1125,7 @@ function atualizarResultado() {
 
             textoResultado.textContent =
                 `As despesas ultrapassam o valor informado em ${moeda(Math.abs(restante))}.`;
-
         }
-
     }
 }
 
@@ -1264,17 +1149,17 @@ if (botaoInvestimentos) {
 
 function abrirPaginaInvestimentos() {
 
-    /*
-       Cria a nova aba diretamente pelo clique
-       do usuário.
-    */
-
     const novaAba =
         window.open(
             "",
             "_blank"
         );
 
+
+    /*
+     * Se o navegador bloquear a nova aba,
+     * avisamos o usuário.
+     */
 
     if (!novaAba) {
 
@@ -1286,10 +1171,7 @@ function abrirPaginaInvestimentos() {
     }
 
 
-    novaAba.document.open();
-
-
-    novaAba.document.write(`
+    const htmlInvestimentos = `
 
 <!DOCTYPE html>
 
@@ -1299,10 +1181,12 @@ function abrirPaginaInvestimentos() {
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>Bolso+ | Onde posso investir?</title>
+<title>Bolso+ | Onde investir</title>
 
 <style>
 
@@ -1388,11 +1272,15 @@ body {
 
     box-shadow:
         0 10px 30px
-        rgba(15, 23, 42, 0.07);
+        rgba(
+            15,
+            23,
+            42,
+            0.07
+        );
 }
 
 .aviso strong {
-
     color: #102a43;
 }
 
@@ -1425,7 +1313,12 @@ body {
 
     box-shadow:
         0 10px 30px
-        rgba(15, 23, 42, 0.07);
+        rgba(
+            15,
+            23,
+            42,
+            0.07
+        );
 
     transition:
         transform 0.2s,
@@ -1439,7 +1332,12 @@ body {
 
     box-shadow:
         0 18px 35px
-        rgba(15, 23, 42, 0.12);
+        rgba(
+            15,
+            23,
+            42,
+            0.12
+        );
 }
 
 .icone {
@@ -1550,25 +1448,20 @@ body {
 }
 
 .rodape p {
-
     margin-bottom: 5px;
 }
 
 @media (max-width: 650px) {
 
     .grid {
-
         grid-template-columns: 1fr;
     }
 
     .topo {
-
-        padding:
-            50px 20px;
+        padding: 50px 20px;
     }
 
     .container {
-
         width: 94%;
     }
 }
@@ -1578,7 +1471,6 @@ body {
 </head>
 
 <body>
-
 
 <header class="topo">
 
@@ -1595,7 +1487,6 @@ body {
 
 
 <main class="container">
-
 
 <div class="aviso">
 
@@ -1614,8 +1505,6 @@ body {
 
 <div class="grid">
 
-
-<!-- NUBANK -->
 
 <article class="card">
 
@@ -1644,8 +1533,6 @@ body {
 </article>
 
 
-<!-- PICPAY -->
-
 <article class="card">
 
     <div class="icone">
@@ -1673,8 +1560,6 @@ body {
 </article>
 
 
-<!-- ITAÚ -->
-
 <article class="card">
 
     <div class="icone">
@@ -1701,8 +1586,6 @@ body {
 
 </article>
 
-
-<!-- BRADESCO -->
 
 <article class="card">
 
@@ -1758,13 +1641,22 @@ body {
 
 </footer>
 
-
 </body>
 
 </html>
+`;
 
-    `);
 
+    /*
+     * Usa document.write apenas na nova aba,
+     * não na página principal.
+     */
+
+    novaAba.document.open();
+
+    novaAba.document.write(
+        htmlInvestimentos
+    );
 
     novaAba.document.close();
 }
