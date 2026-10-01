@@ -1,6 +1,5 @@
 "use strict";
 
-
 /* =========================================================
    CHAVES DO LOCAL STORAGE
 ========================================================= */
@@ -60,9 +59,7 @@ let gastos = carregarJSON(
 
 let dinheiroDisponivel =
     Number(
-        localStorage.getItem(
-            CHAVE_DINHEIRO
-        )
+        localStorage.getItem(CHAVE_DINHEIRO)
     ) || 0;
 
 
@@ -269,10 +266,7 @@ function validarCPF(cpf) {
         (soma * 10) % 11;
 
 
-    if (
-        primeiroDigito === 10
-    ) {
-
+    if (primeiroDigito === 10) {
         primeiroDigito = 0;
     }
 
@@ -305,10 +299,7 @@ function validarCPF(cpf) {
         (soma * 10) % 11;
 
 
-    if (
-        segundoDigito === 10
-    ) {
-
+    if (segundoDigito === 10) {
         segundoDigito = 0;
     }
 
@@ -332,9 +323,7 @@ function formatarTelefone(valor) {
             .slice(0, 11);
 
 
-    if (
-        numeros.length <= 10
-    ) {
+    if (numeros.length <= 10) {
 
         return numeros
             .replace(
@@ -434,6 +423,23 @@ if (formCadastro) {
             evento.preventDefault();
 
 
+            /* Verifica se todos os elementos existem */
+
+            if (
+                !nomeInput ||
+                !sobrenomeInput ||
+                !cpfInput ||
+                !nascimentoInput ||
+                !emailInput ||
+                !telefoneInput
+            ) {
+
+                return;
+            }
+
+
+            /* Valida CPF */
+
             if (
                 !validarCPF(
                     cpfInput.value
@@ -450,6 +456,8 @@ if (formCadastro) {
                 return;
             }
 
+
+            /* Cria o cadastro */
 
             cadastro = {
 
@@ -474,19 +482,20 @@ if (formCadastro) {
             };
 
 
+            /* Salva no navegador */
+
             salvarJSON(
                 CHAVE_CADASTRO,
                 cadastro
             );
 
 
+            /* Mostra o cartão do cadastro */
+
             mostrarCadastro();
 
 
-            /*
-               ESTA É A MENSAGEM
-               "Cadastro salvo com sucesso!"
-            */
+            /* MOSTRA A MENSAGEM */
 
             mostrarMensagemCadastro(
                 "Cadastro salvo com sucesso!",
@@ -495,8 +504,8 @@ if (formCadastro) {
 
 
             /*
-               Mantém a mensagem visível
-               por alguns segundos.
+               A mensagem permanece na tela
+               por 5 segundos.
             */
 
             setTimeout(
@@ -508,8 +517,10 @@ if (formCadastro) {
                         "Cadastro salvo com sucesso!"
                     ) {
 
-                        mensagemCadastro.textContent =
-                            "";
+                        mensagemCadastro.textContent = "";
+
+                        mensagemCadastro.className =
+                            "mensagem";
 
                     }
 
@@ -765,9 +776,7 @@ function renderizarGastos() {
     tabelaGastos.innerHTML = "";
 
 
-    if (
-        gastos.length === 0
-    ) {
+    if (gastos.length === 0) {
 
         if (tabelaVazia) {
 
@@ -792,53 +801,39 @@ function renderizarGastos() {
         function (gasto) {
 
             const tr =
-                document.createElement(
-                    "tr"
-                );
+                document.createElement("tr");
 
 
             const tdDescricao =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
             tdDescricao.textContent =
                 gasto.descricao;
 
 
             const tdCategoria =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
             tdCategoria.textContent =
                 gasto.categoria;
 
 
             const tdDia =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
             tdDia.textContent =
                 gasto.dia;
 
 
             const tdTipo =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
 
             const tipoSpan =
-                document.createElement(
-                    "span"
-                );
-
+                document.createElement("span");
 
             tipoSpan.className =
                 `tipo ${gasto.tipo}`;
-
 
             tipoSpan.textContent =
                 gasto.tipo === "receita"
@@ -852,16 +847,10 @@ function renderizarGastos() {
 
 
             const tdValor =
-                document.createElement(
-                    "td"
-                );
-
+                document.createElement("td");
 
             tdValor.textContent =
-                moeda(
-                    gasto.valor
-                );
-
+                moeda(gasto.valor);
 
             tdValor.className =
                 gasto.tipo === "receita"
@@ -870,24 +859,17 @@ function renderizarGastos() {
 
 
             const tdAcao =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
 
             const botaoExcluir =
-                document.createElement(
-                    "button"
-                );
-
+                document.createElement("button");
 
             botaoExcluir.type =
                 "button";
 
-
             botaoExcluir.className =
                 "botao-excluir";
-
 
             botaoExcluir.textContent =
                 "Excluir";
@@ -910,34 +892,15 @@ function renderizarGastos() {
             );
 
 
-            tr.appendChild(
-                tdDescricao
-            );
-
-            tr.appendChild(
-                tdCategoria
-            );
-
-            tr.appendChild(
-                tdDia
-            );
-
-            tr.appendChild(
-                tdTipo
-            );
-
-            tr.appendChild(
-                tdValor
-            );
-
-            tr.appendChild(
-                tdAcao
-            );
+            tr.appendChild(tdDescricao);
+            tr.appendChild(tdCategoria);
+            tr.appendChild(tdDia);
+            tr.appendChild(tdTipo);
+            tr.appendChild(tdValor);
+            tr.appendChild(tdAcao);
 
 
-            tabelaGastos.appendChild(
-                tr
-            );
+            tabelaGastos.appendChild(tr);
 
         }
     );
@@ -982,10 +945,7 @@ if (limparGastos) {
         "click",
         function () {
 
-            if (
-                gastos.length === 0
-            ) {
-
+            if (gastos.length === 0) {
                 return;
             }
 
@@ -997,7 +957,6 @@ if (limparGastos) {
 
 
             if (!confirmar) {
-
                 return;
             }
 
@@ -1027,7 +986,6 @@ if (limparGastos) {
 function calcularResumo() {
 
     let receitas = 0;
-
     let despesas = 0;
 
 
@@ -1039,16 +997,12 @@ function calcularResumo() {
             ) {
 
                 receitas +=
-                    Number(
-                        gasto.valor
-                    );
+                    Number(gasto.valor);
 
             } else {
 
                 despesas +=
-                    Number(
-                        gasto.valor
-                    );
+                    Number(gasto.valor);
 
             }
 
@@ -1056,20 +1010,23 @@ function calcularResumo() {
     );
 
 
-    const saldo =
-        receitas - despesas;
-
-
     return {
-        receitas,
-        despesas,
-        saldo
+
+        receitas:
+            receitas,
+
+        despesas:
+            despesas,
+
+        saldo:
+            receitas - despesas
+
     };
 }
 
 
 /* =========================================================
-   ATUALIZAR RESUMO DO TOPO
+   ATUALIZAR RESUMO
 ========================================================= */
 
 function atualizarResumo() {
@@ -1081,9 +1038,7 @@ function atualizarResumo() {
     if (receitasDestaque) {
 
         receitasDestaque.textContent =
-            moeda(
-                resumo.receitas
-            );
+            moeda(resumo.receitas);
 
     }
 
@@ -1091,9 +1046,7 @@ function atualizarResumo() {
     if (despesasDestaque) {
 
         despesasDestaque.textContent =
-            moeda(
-                resumo.despesas
-            );
+            moeda(resumo.despesas);
 
     }
 
@@ -1101,9 +1054,7 @@ function atualizarResumo() {
     if (saldoDestaque) {
 
         saldoDestaque.textContent =
-            moeda(
-                resumo.saldo
-            );
+            moeda(resumo.saldo);
 
     }
 
@@ -1127,9 +1078,7 @@ if (dinheiroInput) {
         function () {
 
             dinheiroDisponivel =
-                Number(
-                    this.value
-                ) || 0;
+                Number(this.value) || 0;
 
 
             localStorage.setItem(
@@ -1175,26 +1124,18 @@ function atualizarResultado() {
 
 
     valorTenho.textContent =
-        moeda(
-            dinheiroDisponivel
-        );
+        moeda(dinheiroDisponivel);
 
 
     valorGasto.textContent =
-        moeda(
-            totalDespesas
-        );
+        moeda(totalDespesas);
 
 
     valorRestante.textContent =
-        moeda(
-            Math.abs(restante)
-        );
+        moeda(Math.abs(restante));
 
 
-    if (
-        restante >= 0
-    ) {
+    if (restante >= 0) {
 
         if (labelRestante) {
 
@@ -1312,23 +1253,20 @@ if (botaoInvestimentos) {
 
     botaoInvestimentos.addEventListener(
         "click",
-        function () {
-
-            abrirPaginaInvestimentos();
-
-        }
+        abrirPaginaInvestimentos
     );
 }
 
 
 /* =========================================================
-   ABRIR PÁGINA DE INVESTIMENTOS
+   PÁGINA DE INVESTIMENTOS
 ========================================================= */
 
 function abrirPaginaInvestimentos() {
 
     /*
-       Abre uma nova aba.
+       Cria a nova aba diretamente pelo clique
+       do usuário.
     */
 
     const novaAba =
@@ -1361,12 +1299,10 @@ function abrirPaginaInvestimentos() {
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>Bolso+ | Onde investir</title>
+<title>Bolso+ | Onde posso investir?</title>
 
 <style>
 
@@ -1452,12 +1388,7 @@ body {
 
     box-shadow:
         0 10px 30px
-        rgba(
-            15,
-            23,
-            42,
-            0.07
-        );
+        rgba(15, 23, 42, 0.07);
 }
 
 .aviso strong {
@@ -1494,12 +1425,7 @@ body {
 
     box-shadow:
         0 10px 30px
-        rgba(
-            15,
-            23,
-            42,
-            0.07
-        );
+        rgba(15, 23, 42, 0.07);
 
     transition:
         transform 0.2s,
@@ -1513,12 +1439,7 @@ body {
 
     box-shadow:
         0 18px 35px
-        rgba(
-            15,
-            23,
-            42,
-            0.12
-        );
+        rgba(15, 23, 42, 0.12);
 }
 
 .icone {
@@ -1846,7 +1767,6 @@ body {
 
 
     novaAba.document.close();
-
 }
 
 
