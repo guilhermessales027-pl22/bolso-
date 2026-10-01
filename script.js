@@ -576,15 +576,19 @@ limparCadastro.addEventListener(
 
         cadastro = null;
 
+
         localStorage.removeItem(
             CHAVE_CADASTRO
         );
 
+
         formCadastro.reset();
+
 
         cadastroSalvo.classList.add(
             "oculto"
         );
+
 
         mensagemCadastroTexto(
             "Cadastro removido.",
@@ -1135,11 +1139,6 @@ botaoInvestimentos.addEventListener(
 
 function abrirPaginaInvestimentos() {
 
-    /*
-       Abre uma nova aba sem precisar criar
-       investimentos.html.
-    */
-
     const novaAba =
         window.open(
             "",
@@ -1290,20 +1289,20 @@ function abrirPaginaInvestimentos() {
 
             grid-template-columns:
                 repeat(
-                    3,
+                    2,
                     minmax(
                         0,
                         1fr
                     )
                 );
 
-            gap: 22px;
+            gap: 25px;
         }
 
 
         .card {
 
-            padding: 28px;
+            padding: 30px;
 
             background: white;
 
@@ -1396,7 +1395,7 @@ function abrirPaginaInvestimentos() {
 
             width: 100%;
 
-            min-height: 46px;
+            min-height: 48px;
 
             padding: 10px 18px;
 
@@ -1462,24 +1461,7 @@ function abrirPaginaInvestimentos() {
         }
 
 
-        @media (max-width: 850px) {
-
-            .grid {
-
-                grid-template-columns:
-                    repeat(
-                        2,
-                        minmax(
-                            0,
-                            1fr
-                        )
-                    );
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
 
             .grid {
 
@@ -1513,13 +1495,13 @@ function abrirPaginaInvestimentos() {
     <header class="topo">
 
         <h1>
-            💰 Onde posso investir?
+            💰 Aonde eu posso investir?
         </h1>
 
         <p>
-            Algumas instituições financeiras possuem
-            opções de investimentos. Pesquise as condições,
-            taxas, riscos e produtos disponíveis antes de investir.
+            Pesquise as opções de investimentos disponíveis
+            nas instituições abaixo e consulte as condições
+            diretamente nos sites oficiais.
         </p>
 
     </header>
@@ -1534,168 +1516,16 @@ function abrirPaginaInvestimentos() {
                 📌 Importante:
             </strong>
 
-            Esta página apresenta instituições onde você
-            pode pesquisar investimentos. Ela não representa
-            recomendação de investimento. As opções, taxas,
-            rentabilidades e condições podem mudar.
-            Verifique sempre as informações diretamente
-            com a instituição financeira.
-
-
+            Esta página apenas facilita o acesso aos sites das
+            instituições. Ela não representa recomendação de
+            investimento. Antes de investir, verifique taxas,
+            riscos, rentabilidade, prazo e demais condições
+            diretamente com a instituição.
+            
         </div>
 
 
         <div class="grid">
-
-
-            <!-- BANCO DO BRASIL -->
-
-            <article class="card">
-
-                <div class="icone">
-                    🏦
-                </div>
-
-                <h2>
-                    Banco do Brasil
-                </h2>
-
-                <p>
-                    Instituição bancária que oferece diferentes
-                    produtos financeiros e opções de investimento
-                    para seus clientes.
-                </p>
-
-                <a
-                    class="botao"
-                    href="https://www.bb.com.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Banco do Brasil
-                </a>
-
-            </article>
-
-
-            <!-- CAIXA -->
-
-            <article class="card">
-
-                <div class="icone">
-                    🏛️
-                </div>
-
-                <h2>
-                    Caixa Econômica Federal
-                </h2>
-
-                <p>
-                    Banco que disponibiliza produtos financeiros
-                    e diferentes alternativas de investimento
-                    para seus clientes.
-                </p>
-
-                <a
-                    class="botao"
-                    href="https://www.caixa.gov.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Caixa
-                </a>
-
-            </article>
-
-
-            <!-- ITAÚ -->
-
-            <article class="card">
-
-                <div class="icone">
-                    💳
-                </div>
-
-                <h2>
-                    Itaú
-                </h2>
-
-                <p>
-                    Banco que disponibiliza produtos de
-                    investimento e serviços financeiros
-                    para seus clientes.
-                </p>
-
-                <a
-                    class="botao"
-                    href="https://www.itau.com.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Itaú
-                </a>
-
-            </article>
-
-
-            <!-- BRADESCO -->
-
-            <article class="card">
-
-                <div class="icone">
-                    💼
-                </div>
-
-                <h2>
-                    Bradesco
-                </h2>
-
-                <p>
-                    Instituição financeira que oferece serviços
-                    bancários e diferentes produtos financeiros,
-                    incluindo investimentos.
-                </p>
-
-                <a
-                    class="botao"
-                    href="https://banco.bradesco/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Bradesco
-                </a>
-
-            </article>
-
-
-            <!-- SANTANDER -->
-
-            <article class="card">
-
-                <div class="icone">
-                    💰
-                </div>
-
-                <h2>
-                    Santander
-                </h2>
-
-                <p>
-                    Banco que oferece produtos financeiros e
-                    alternativas de investimento para seus
-                    clientes.
-                </p>
-
-                <a
-                    class="botao"
-                    href="https://www.santander.com.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Santander
-                </a>
-
-            </article>
 
 
             <!-- NUBANK -->
@@ -1711,18 +1541,106 @@ function abrirPaginaInvestimentos() {
                 </h2>
 
                 <p>
-                    Instituição financeira digital que oferece
-                    produtos financeiros e opções relacionadas
-                    a investimentos.
+                    Acesse a página oficial do Nubank para
+                    conhecer as opções de investimentos
+                    disponíveis.
                 </p>
 
                 <a
                     class="botao"
-                    href="https://nubank.com.br/"
+                    href="https://nubank.com.br/nu/investimentos"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Visitar Nubank
+                    Acessar Nubank
+                </a>
+
+            </article>
+
+
+            <!-- PICPAY -->
+
+            <article class="card">
+
+                <div class="icone">
+                    💚
+                </div>
+
+                <h2>
+                    PicPay
+                </h2>
+
+                <p>
+                    Conheça as opções de investimentos e
+                    produtos financeiros disponíveis no
+                    PicPay.
+                </p>
+
+                <a
+                    class="botao"
+                    href="https://picpay.com/pt-br/pf/investimentos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Acessar PicPay
+                </a>
+
+            </article>
+
+
+            <!-- ITAÚ -->
+
+            <article class="card">
+
+                <div class="icone">
+                    🟠
+                </div>
+
+                <h2>
+                    Itaú
+                </h2>
+
+                <p>
+                    Acesse a página oficial de investimentos
+                    do Itaú e consulte os produtos disponíveis.
+                </p>
+
+                <a
+                    class="botao"
+                    href="https://www.itau.com.br/investimentos/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Acessar Itaú
+                </a>
+
+            </article>
+
+
+            <!-- BRADESCO -->
+
+            <article class="card">
+
+                <div class="icone">
+                    🔴
+                </div>
+
+                <h2>
+                    Bradesco
+                </h2>
+
+                <p>
+                    Consulte as opções de investimentos
+                    disponibilizadas pelo Bradesco.
+                </p>
+
+                <a
+                    class="botao"
+                    href="https://banco.bradesco/html/classic/portal-investimentos/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Acessar Bradesco
                 </a>
 
             </article>
@@ -1766,7 +1684,7 @@ function abrirPaginaInvestimentos() {
     novaAba.document.close();
 
 }
-    
+
 
 /* =========================================================
    INICIALIZAÇÃO
