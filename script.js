@@ -2,7 +2,7 @@
 
 
 /* =========================================================
-   CHAVES DO SISTEMA
+   CHAVES DO LOCAL STORAGE
 ========================================================= */
 
 const CHAVE_CADASTRO =
@@ -148,7 +148,7 @@ const botaoInvestimentos =
 
 
 /* =========================================================
-   DADOS
+   CARREGAR DADOS
 ========================================================= */
 
 let cadastro =
@@ -217,6 +217,7 @@ function salvarJSON(
         chave,
         JSON.stringify(valor)
     );
+
 }
 
 
@@ -233,6 +234,7 @@ function moeda(valor) {
             currency: "BRL"
         }
     );
+
 }
 
 
@@ -257,6 +259,7 @@ function formatarCPF(valor) {
             /(\d{3})(\d{1,2})$/,
             "$1-$2"
         );
+
 }
 
 
@@ -287,6 +290,7 @@ function validarCPF(cpf) {
         soma +=
             Number(numeros[i]) *
             (10 - i);
+
     }
 
 
@@ -323,6 +327,7 @@ function validarCPF(cpf) {
         soma +=
             Number(numeros[i]) *
             (11 - i);
+
     }
 
 
@@ -342,6 +347,7 @@ function validarCPF(cpf) {
         segundoDigito ===
         Number(numeros[10])
     );
+
 }
 
 
@@ -370,6 +376,7 @@ function formatarTelefone(valor) {
                 /(\d{4})(\d)/,
                 "$1-$2"
             );
+
     }
 
 
@@ -382,6 +389,7 @@ function formatarTelefone(valor) {
             /(\d{5})(\d)/,
             "$1-$2"
         );
+
 }
 
 
@@ -389,7 +397,7 @@ function formatarTelefone(valor) {
    MENSAGEM DO CADASTRO
 ========================================================= */
 
-function mensagemCadastroTexto(
+function mostrarMensagemCadastro(
     texto,
     tipo
 ) {
@@ -397,13 +405,15 @@ function mensagemCadastroTexto(
     mensagemCadastro.textContent =
         texto;
 
+
     mensagemCadastro.className =
-        `mensagem ${tipo}`;
+        "mensagem " + tipo;
+
 }
 
 
 /* =========================================================
-   MÁSCARAS
+   MÁSCARA CPF
 ========================================================= */
 
 cpfInput.addEventListener(
@@ -414,9 +424,14 @@ cpfInput.addEventListener(
             formatarCPF(
                 this.value
             );
+
     }
 );
 
+
+/* =========================================================
+   MÁSCARA TELEFONE
+========================================================= */
 
 telefoneInput.addEventListener(
     "input",
@@ -426,6 +441,7 @@ telefoneInput.addEventListener(
             formatarTelefone(
                 this.value
             );
+
     }
 );
 
@@ -441,22 +457,29 @@ formCadastro.addEventListener(
         evento.preventDefault();
 
 
+        /* Validação do CPF */
+
         if (
             !validarCPF(
                 cpfInput.value
             )
         ) {
 
-            mensagemCadastroTexto(
+            mostrarMensagemCadastro(
                 "CPF inválido. Verifique os números.",
                 "erro"
             );
 
+
             cpfInput.focus();
 
+
             return;
+
         }
 
+
+        /* Cria objeto do cadastro */
 
         cadastro = {
 
@@ -481,26 +504,40 @@ formCadastro.addEventListener(
         };
 
 
+        /* Salva cadastro */
+
         salvarJSON(
             CHAVE_CADASTRO,
             cadastro
         );
 
 
+        /* Atualiza cadastro visual */
+
         mostrarCadastro();
 
 
-        mensagemCadastroTexto(
+        /* MOSTRA A MENSAGEM */
+
+        mostrarMensagemCadastro(
             "Cadastro salvo com sucesso!",
             "sucesso"
         );
+
+
+        /* Rola suavemente até a mensagem */
+
+        mensagemCadastro.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
 
     }
 );
 
 
 /* =========================================================
-   MOSTRAR CADASTRO
+   MOSTRAR CADASTRO SALVO
 ========================================================= */
 
 function mostrarCadastro() {
@@ -516,16 +553,21 @@ function mostrarCadastro() {
 
 
     nomeCadastrado.textContent =
-        `${cadastro.nome} ${cadastro.sobrenome}`;
+        cadastro.nome +
+        " " +
+        cadastro.sobrenome;
 
 
     emailCadastrado.textContent =
-        `${cadastro.email} • ${cadastro.telefone}`;
+        cadastro.email +
+        " • " +
+        cadastro.telefone;
 
 
     cadastroSalvo.classList.remove(
         "oculto"
     );
+
 }
 
 
@@ -563,6 +605,7 @@ function preencherCadastro() {
 
     telefoneInput.value =
         cadastro.telefone || "";
+
 }
 
 
@@ -590,7 +633,7 @@ limparCadastro.addEventListener(
         );
 
 
-        mensagemCadastroTexto(
+        mostrarMensagemCadastro(
             "Cadastro removido.",
             "sucesso"
         );
@@ -746,8 +789,11 @@ function renderizarGastos() {
                     "span"
                 );
 
+
             tipoSpan.className =
-                `tipo ${gasto.tipo}`;
+                "tipo " +
+                gasto.tipo;
+
 
             tipoSpan.textContent =
                 gasto.tipo === "receita"
@@ -765,8 +811,10 @@ function renderizarGastos() {
                     "td"
                 );
 
+
             tdValor.textContent =
                 moeda(gasto.valor);
+
 
             tdValor.className =
                 gasto.tipo === "receita"
@@ -785,11 +833,14 @@ function renderizarGastos() {
                     "button"
                 );
 
+
             botaoExcluir.type =
                 "button";
 
+
             botaoExcluir.className =
                 "botao-excluir";
+
 
             botaoExcluir.textContent =
                 "Excluir";
@@ -843,6 +894,7 @@ function renderizarGastos() {
 
         }
     );
+
 }
 
 
@@ -957,10 +1009,13 @@ function calcularResumo() {
 
 
     return {
+
         receitas,
         despesas,
         saldo
+
     };
+
 }
 
 
@@ -975,15 +1030,21 @@ function atualizarResumo() {
 
 
     receitasDestaque.textContent =
-        moeda(resumo.receitas);
+        moeda(
+            resumo.receitas
+        );
 
 
     despesasDestaque.textContent =
-        moeda(resumo.despesas);
+        moeda(
+            resumo.despesas
+        );
 
 
     saldoDestaque.textContent =
-        moeda(resumo.saldo);
+        moeda(
+            resumo.saldo
+        );
 
 
     atualizarResultado();
@@ -1041,11 +1102,15 @@ function atualizarResultado() {
 
 
     valorTenho.textContent =
-        moeda(dinheiroDisponivel);
+        moeda(
+            dinheiroDisponivel
+        );
 
 
     valorGasto.textContent =
-        moeda(totalDespesas);
+        moeda(
+            totalDespesas
+        );
 
 
     valorRestante.textContent =
@@ -1083,7 +1148,9 @@ function atualizarResultado() {
 
 
         textoResultado.textContent =
-            `Depois das despesas registradas, você terá ${moeda(restante)} disponíveis.`;
+            "Depois das despesas registradas, você terá " +
+            moeda(restante) +
+            " disponíveis.";
 
     } else {
 
@@ -1112,7 +1179,9 @@ function atualizarResultado() {
 
 
         textoResultado.textContent =
-            `As despesas ultrapassam o valor informado em ${moeda(Math.abs(restante))}.`;
+            "As despesas ultrapassam o valor informado em " +
+            moeda(Math.abs(restante)) +
+            ".";
 
     }
 
@@ -1120,7 +1189,7 @@ function atualizarResultado() {
 
 
 /* =========================================================
-   ABRIR PÁGINA DE INVESTIMENTOS
+   INVESTIMENTOS
 ========================================================= */
 
 botaoInvestimentos.addEventListener(
@@ -1200,6 +1269,7 @@ function abrirPaginaInvestimentos() {
             background: #f4f6f8;
 
             line-height: 1.6;
+
         }
 
 
@@ -1217,6 +1287,7 @@ function abrirPaginaInvestimentos() {
                     #102a43,
                     #173f67
                 );
+
         }
 
 
@@ -1226,6 +1297,7 @@ function abrirPaginaInvestimentos() {
 
             font-size:
                 clamp(32px, 5vw, 52px);
+
         }
 
 
@@ -1238,6 +1310,7 @@ function abrirPaginaInvestimentos() {
             color: #dbeafe;
 
             font-size: 18px;
+
         }
 
 
@@ -1249,6 +1322,7 @@ function abrirPaginaInvestimentos() {
             );
 
             margin: 45px auto;
+
         }
 
 
@@ -1260,9 +1334,10 @@ function abrirPaginaInvestimentos() {
 
             color: #334155;
 
-            background: #ffffff;
+            background: white;
 
-            border: 1px solid #dfe5e9;
+            border:
+                1px solid #dfe5e9;
 
             border-radius: 15px;
 
@@ -1274,12 +1349,14 @@ function abrirPaginaInvestimentos() {
                     42,
                     0.07
                 );
+
         }
 
 
         .aviso strong {
 
             color: #102a43;
+
         }
 
 
@@ -1296,17 +1373,19 @@ function abrirPaginaInvestimentos() {
                     )
                 );
 
-            gap: 25px;
+            gap: 22px;
+
         }
 
 
         .card {
 
-            padding: 30px;
+            padding: 28px;
 
             background: white;
 
-            border: 1px solid #dfe5e9;
+            border:
+                1px solid #dfe5e9;
 
             border-radius: 18px;
 
@@ -1322,6 +1401,7 @@ function abrirPaginaInvestimentos() {
             transition:
                 transform 0.2s,
                 box-shadow 0.2s;
+
         }
 
 
@@ -1338,6 +1418,7 @@ function abrirPaginaInvestimentos() {
                     42,
                     0.12
                 );
+
         }
 
 
@@ -1362,6 +1443,7 @@ function abrirPaginaInvestimentos() {
             border-radius: 16px;
 
             font-size: 30px;
+
         }
 
 
@@ -1372,6 +1454,7 @@ function abrirPaginaInvestimentos() {
             color: #102a43;
 
             font-size: 23px;
+
         }
 
 
@@ -1382,6 +1465,7 @@ function abrirPaginaInvestimentos() {
             margin-bottom: 20px;
 
             color: #64748b;
+
         }
 
 
@@ -1395,7 +1479,7 @@ function abrirPaginaInvestimentos() {
 
             width: 100%;
 
-            min-height: 48px;
+            min-height: 46px;
 
             padding: 10px 18px;
 
@@ -1410,12 +1494,14 @@ function abrirPaginaInvestimentos() {
             text-decoration: none;
 
             transition: 0.2s;
+
         }
 
 
         .botao:hover {
 
             background: #0f3152;
+
         }
 
 
@@ -1438,6 +1524,7 @@ function abrirPaginaInvestimentos() {
             font-weight: 800;
 
             text-decoration: none;
+
         }
 
 
@@ -1452,12 +1539,14 @@ function abrirPaginaInvestimentos() {
             color: #dbeafe;
 
             background: #102a43;
+
         }
 
 
         .rodape p {
 
             margin-bottom: 5px;
+
         }
 
 
@@ -1465,21 +1554,8 @@ function abrirPaginaInvestimentos() {
 
             .grid {
 
-                grid-template-columns:
-                    1fr;
-            }
+                grid-template-columns: 1fr;
 
-
-            .topo {
-
-                padding:
-                    50px 20px;
-            }
-
-
-            .container {
-
-                width: 94%;
             }
 
         }
@@ -1495,16 +1571,18 @@ function abrirPaginaInvestimentos() {
     <header class="topo">
 
         <h1>
-            💰 Aonde eu posso investir?
+            💰 Onde posso investir?
         </h1>
 
+
         <p>
-            Pesquise as opções de investimentos disponíveis
-            nas instituições abaixo e consulte as condições
+            Pesquise as opções de investimentos oferecidas
+            pelas instituições abaixo e confira as condições
             diretamente nos sites oficiais.
         </p>
 
     </header>
+
 
 
     <main class="container">
@@ -1516,13 +1594,14 @@ function abrirPaginaInvestimentos() {
                 📌 Importante:
             </strong>
 
-            Esta página apenas facilita o acesso aos sites das
-            instituições. Ela não representa recomendação de
-            investimento. Antes de investir, verifique taxas,
-            riscos, rentabilidade, prazo e demais condições
-            diretamente com a instituição.
-            
+            Esta página serve para facilitar a pesquisa.
+            Ela não representa recomendação de investimento.
+            As opções, taxas, rentabilidades e condições podem
+            mudar. Verifique sempre as informações diretamente
+            com cada instituição.
+
         </div>
+
 
 
         <div class="grid">
@@ -1536,26 +1615,30 @@ function abrirPaginaInvestimentos() {
                     🟣
                 </div>
 
+
                 <h2>
                     Nubank
                 </h2>
 
+
                 <p>
-                    Acesse a página oficial do Nubank para
-                    conhecer as opções de investimentos
-                    disponíveis.
+                    Instituição financeira digital que oferece
+                    produtos financeiros e opções relacionadas
+                    a investimentos.
                 </p>
+
 
                 <a
                     class="botao"
-                    href="https://nubank.com.br/nu/investimentos"
+                    href="https://nubank.com.br/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Acessar Nubank
+                    Visitar Nubank
                 </a>
 
             </article>
+
 
 
             <!-- PICPAY -->
@@ -1563,29 +1646,33 @@ function abrirPaginaInvestimentos() {
             <article class="card">
 
                 <div class="icone">
-                    💚
+                    💳
                 </div>
+
 
                 <h2>
                     PicPay
                 </h2>
 
+
                 <p>
-                    Conheça as opções de investimentos e
-                    produtos financeiros disponíveis no
-                    PicPay.
+                    Plataforma financeira digital que oferece
+                    serviços financeiros e produtos para seus
+                    usuários.
                 </p>
+
 
                 <a
                     class="botao"
-                    href="https://picpay.com/pt-br/pf/investimentos"
+                    href="https://picpay.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Acessar PicPay
+                    Visitar PicPay
                 </a>
 
             </article>
+
 
 
             <!-- ITAÚ -->
@@ -1593,28 +1680,33 @@ function abrirPaginaInvestimentos() {
             <article class="card">
 
                 <div class="icone">
-                    🟠
+                    🏦
                 </div>
+
 
                 <h2>
                     Itaú
                 </h2>
 
+
                 <p>
-                    Acesse a página oficial de investimentos
-                    do Itaú e consulte os produtos disponíveis.
+                    Banco que oferece serviços financeiros,
+                    produtos bancários e alternativas de
+                    investimento para seus clientes.
                 </p>
+
 
                 <a
                     class="botao"
-                    href="https://www.itau.com.br/investimentos/"
+                    href="https://www.itau.com.br/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Acessar Itaú
+                    Visitar Itaú
                 </a>
 
             </article>
+
 
 
             <!-- BRADESCO -->
@@ -1622,31 +1714,35 @@ function abrirPaginaInvestimentos() {
             <article class="card">
 
                 <div class="icone">
-                    🔴
+                    💼
                 </div>
+
 
                 <h2>
                     Bradesco
                 </h2>
 
+
                 <p>
-                    Consulte as opções de investimentos
-                    disponibilizadas pelo Bradesco.
+                    Instituição financeira que oferece serviços
+                    bancários e diferentes produtos financeiros,
+                    incluindo investimentos.
                 </p>
+
 
                 <a
                     class="botao"
-                    href="https://banco.bradesco/html/classic/portal-investimentos/"
+                    href="https://banco.bradesco/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Acessar Bradesco
+                    Visitar Bradesco
                 </a>
 
             </article>
 
-
         </div>
+
 
 
         <a
@@ -1657,8 +1753,8 @@ function abrirPaginaInvestimentos() {
             ← Voltar para o Bolso+
         </a>
 
-
     </main>
+
 
 
     <footer class="rodape">
@@ -1666,6 +1762,7 @@ function abrirPaginaInvestimentos() {
         <p>
             💰 Bolso+ - Controle Financeiro
         </p>
+
 
         <p>
             Pesquise e compare as opções antes de investir.
@@ -1697,7 +1794,3 @@ mostrarCadastro();
 renderizarGastos();
 
 atualizarResumo();
-
-
-limparCadastro.addEventListener(
-    "click",
