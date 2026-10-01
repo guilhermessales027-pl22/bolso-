@@ -27,7 +27,9 @@
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="header">
 
@@ -37,6 +39,7 @@
         >
             💰 Bolso+
         </a>
+
 
         <nav>
 
@@ -67,7 +70,10 @@
 
     <main>
 
-        <!-- ================= INÍCIO ================= -->
+
+        <!-- =====================================================
+             INÍCIO
+        ====================================================== -->
 
         <section
             id="inicio"
@@ -80,14 +86,17 @@
                     Controle financeiro simples
                 </span>
 
+
                 <h1>
                     Organize sua semana e cuide melhor do seu dinheiro.
                 </h1>
+
 
                 <p>
                     Cadastre seus dados, registre suas receitas e despesas
                     e acompanhe automaticamente sua situação financeira.
                 </p>
+
 
                 <a
                     href="#cadastro"
@@ -105,9 +114,11 @@
                     Saldo da semana
                 </span>
 
+
                 <strong id="saldo-destaque">
                     R$ 0,00
                 </strong>
+
 
                 <div class="mini-resumo">
 
@@ -116,6 +127,7 @@
                         <small>
                             Receitas
                         </small>
+
 
                         <strong
                             id="receitas-destaque"
@@ -133,6 +145,7 @@
                             Despesas
                         </small>
 
+
                         <strong
                             id="despesas-destaque"
                             class="valor-negativo"
@@ -149,7 +162,10 @@
         </section>
 
 
-        <!-- ================= CADASTRO ================= -->
+
+        <!-- =====================================================
+             CADASTRO
+        ====================================================== -->
 
         <section
             id="cadastro"
@@ -162,9 +178,11 @@
                     Primeiro passo
                 </span>
 
+
                 <h2>
                     Faça seu cadastro
                 </h2>
+
 
                 <p>
                     Preencha seus dados para identificar seu controle financeiro.
@@ -180,11 +198,13 @@
 
                 <div class="grid-cadastro">
 
+
                     <div class="campo">
 
                         <label for="nome">
                             Nome
                         </label>
+
 
                         <input
                             type="text"
@@ -196,11 +216,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="sobrenome">
                             Sobrenome
                         </label>
+
 
                         <input
                             type="text"
@@ -212,11 +234,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="cpf">
                             CPF
                         </label>
+
 
                         <input
                             type="text"
@@ -230,11 +254,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="data-nascimento">
                             Data de nascimento
                         </label>
+
 
                         <input
                             type="date"
@@ -245,11 +271,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="email">
                             E-mail
                         </label>
+
 
                         <input
                             type="email"
@@ -261,11 +289,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="telefone">
                             Telefone
                         </label>
+
 
                         <input
                             type="tel"
@@ -281,6 +311,7 @@
                 </div>
 
 
+
                 <div class="acoes">
 
                     <button
@@ -289,6 +320,7 @@
                     >
                         Salvar cadastro
                     </button>
+
 
                     <button
                         type="button"
@@ -309,6 +341,7 @@
             </form>
 
 
+
             <div
                 id="cadastro-salvo"
                 class="cadastro-salvo oculto"
@@ -318,15 +351,18 @@
                     👤
                 </div>
 
+
                 <div>
 
                     <span>
                         Cadastro ativo
                     </span>
 
+
                     <h3 id="nome-cadastrado">
                         Usuário
                     </h3>
+
 
                     <p id="email-cadastrado"></p>
 
@@ -337,7 +373,10 @@
         </section>
 
 
-        <!-- ================= GASTOS ================= -->
+
+        <!-- =====================================================
+             GASTOS
+        ====================================================== -->
 
         <section
             id="gastos"
@@ -350,9 +389,11 @@
                     Controle semanal
                 </span>
 
+
                 <h2>
                     Meus gastos da semana
                 </h2>
+
 
                 <p>
                     Registre cada movimentação. Esta é a única tabela
@@ -362,6 +403,7 @@
             </div>
 
 
+
             <form
                 id="form-gasto"
                 class="card-formulario"
@@ -369,11 +411,13 @@
 
                 <div class="grid-gastos">
 
+
                     <div class="campo">
 
                         <label for="descricao">
                             Descrição
                         </label>
+
 
                         <input
                             type="text"
@@ -385,11 +429,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="categoria">
                             Categoria
                         </label>
+
 
                         <select id="categoria">
 
@@ -430,11 +476,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="dia">
                             Dia da semana
                         </label>
+
 
                         <select id="dia">
 
@@ -471,11 +519,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="tipo">
                             Tipo
                         </label>
+
 
                         <select id="tipo">
 
@@ -492,11 +542,13 @@
                     </div>
 
 
+
                     <div class="campo">
 
                         <label for="valor">
                             Valor
                         </label>
+
 
                         <input
                             type="number"
@@ -510,6 +562,7 @@
                     </div>
 
 
+
                     <button
                         type="submit"
                         class="botao-principal botao-adicionar"
@@ -520,6 +573,7 @@
                 </div>
 
             </form>
+
 
 
             <div class="tabela-container">
@@ -564,6 +618,7 @@
                 </table>
 
 
+
                 <div
                     id="tabela-vazia"
                     class="tabela-vazia"
@@ -573,9 +628,11 @@
                         🧾
                     </span>
 
+
                     <h3>
                         Nenhuma movimentação registrada
                     </h3>
+
 
                     <p>
                         Adicione sua primeira movimentação usando o formulário acima.
@@ -584,6 +641,7 @@
                 </div>
 
             </div>
+
 
 
             <button
@@ -597,7 +655,10 @@
         </section>
 
 
-        <!-- ================= RESULTADO ================= -->
+
+        <!-- =====================================================
+             RESULTADO
+        ====================================================== -->
 
         <section
             id="resultado"
@@ -610,15 +671,18 @@
                     Resultado final
                 </span>
 
+
                 <h2>
                     Resumo da semana
                 </h2>
+
 
                 <p>
                     Veja quanto você tem, quanto gastou e quanto vai sobrar.
                 </p>
 
             </div>
+
 
 
             <div class="dinheiro-card">
@@ -629,9 +693,11 @@
                         Seu dinheiro
                     </span>
 
+
                     <h2>
                         Quanto dinheiro você tem?
                     </h2>
+
 
                     <p>
                         Informe o valor que você possui para comparar
@@ -641,11 +707,13 @@
                 </div>
 
 
+
                 <div class="campo dinheiro-input">
 
                     <label for="dinheiro-disponivel">
                         Valor que você tem
                     </label>
+
 
                     <input
                         type="number"
@@ -658,13 +726,16 @@
                 </div>
 
 
+
                 <div class="resultado-grid">
+
 
                     <div class="resultado-item">
 
                         <span>
                             💰 Você tem
                         </span>
+
 
                         <strong id="valor-tenho">
                             R$ 0,00
@@ -673,11 +744,13 @@
                     </div>
 
 
+
                     <div class="resultado-item">
 
                         <span>
                             📉 Você gastou
                         </span>
+
 
                         <strong
                             id="valor-gasto"
@@ -689,6 +762,7 @@
                     </div>
 
 
+
                     <div
                         id="resultado-restante-card"
                         class="resultado-item destaque"
@@ -697,6 +771,7 @@
                         <span id="label-restante">
                             💵 Vai sobrar
                         </span>
+
 
                         <strong id="valor-restante">
                             R$ 0,00
@@ -709,6 +784,7 @@
             </div>
 
 
+
             <div
                 id="mensagem-resultado"
                 class="mensagem-resultado neutro"
@@ -718,11 +794,13 @@
                     📊
                 </span>
 
+
                 <div>
 
                     <h3 id="titulo-resultado">
                         Comece a registrar seus gastos
                     </h3>
+
 
                     <p id="texto-resultado">
                         Seu resultado financeiro aparecerá aqui.
@@ -735,51 +813,58 @@
         </section>
 
 
-        <!-- ================= INVESTIMENTOS ================= -->
 
-       <section
-    id="investimentos"
-    class="secao secao-investimentos"
->
+        <!-- =====================================================
+             INVESTIMENTOS
+        ====================================================== -->
 
-    <div class="cabecalho-secao">
-
-        <span class="tag">
-            Próximo passo
-        </span>
-
-        <h2>
-            Aonde eu posso investir?
-        </h2>
-
-        <p>
-            Conheça algumas instituições financeiras onde você
-            pode pesquisar opções de investimentos.
-        </p>
-
-    </div>
-
-
-    <div class="investimentos-acao">
-
-        <button
-            type="button"
-            id="botao-investimentos"
-            class="botao-investimentos"
+        <section
+            id="investimentos"
+            class="secao secao-investimentos"
         >
-            💰 Aonde eu posso investir?
-        </button>
 
-    </div>
+            <div class="cabecalho-secao">
 
-</section>
+                <span class="tag">
+                    Próximo passo
+                </span>
+
+
+                <h2>
+                    Aonde eu posso investir?
+                </h2>
+
+
+                <p>
+                    Conheça algumas instituições financeiras onde você
+                    pode pesquisar opções de investimentos.
+                </p>
+
+            </div>
+
+
+
+            <div class="investimentos-acao">
+
+                <button
+                    type="button"
+                    id="botao-investimentos"
+                    class="botao-investimentos"
+                >
+                    💰 Aonde eu posso investir?
+                </button>
+
+            </div>
 
         </section>
 
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
 
@@ -787,9 +872,11 @@
             💰 Bolso+
         </h2>
 
+
         <p>
             Organize seu dinheiro. Alcance seus objetivos.
         </p>
+
 
         <p>
             © 2026 Bolso+
@@ -797,6 +884,11 @@
 
     </footer>
 
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
     <script src="script.js"></script>
 
