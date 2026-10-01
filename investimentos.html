@@ -1,1 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Bolso+ - Instituições financeiras"
+    >
+
+    <title>
+        Bolso+ | Onde posso investir?
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-width: 320px;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #1f2937;
+
+            background: #f4f6f8;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           CABEÇALHO
+        ========================================= */
+
+        .topo {
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102a43,
+                    #173f67
+                );
+        }
+
+
+        .topo h1 {
+
+            margin-bottom: 15px;
+
+            font-size:
+                clamp(32px, 5vw, 52px);
+
+            line-height: 1.1;
+        }
+
+
+        .topo p {
+
+            max-width: 750px;
+
+            margin: 0 auto;
+
+            color: #dbeafe;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           CONTAINER
+        ========================================= */
+
+        .container {
+
+            width: min(
+                1100px,
+                92%
+            );
+
+            margin: 45px auto;
+        }
+
+
+        /* =========================================
+           AVISO
+        ========================================= */
+
+        .aviso {
+
+            margin-bottom: 35px;
+
+            padding: 22px;
+
+            color: #334155;
+
+            background: white;
+
+            border:
+                1px solid #dfe5e9;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.07
+                );
+        }
+
+
+        .aviso strong {
+
+            color: #102a43;
+        }
+
+
+        /* =========================================
+           GRID
+        ========================================= */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap: 25px;
+        }
+
+
+        /* =========================================
+           CARTÕES
+        ========================================= */
+
+        .card {
+
+            padding: 30px;
+
+            background: white;
+
+            border:
+                1px solid #dfe5e9;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.07
+                );
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 18px 35px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.13
+                );
+        }
+
+
+        /* =========================================
+           ÍCONE
+        ========================================= */
+
+        .icone {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 70px;
+
+            height: 70px;
+
+            margin-bottom: 20px;
+
+            color: white;
+
+            background:
+                #173f67;
+
+            border-radius: 17px;
+
+            font-size: 32px;
+        }
+
+
+        /* =========================================
+           TÍTULO DO BANCO
+        ========================================= */
+
+        .card h2 {
+
+            margin-bottom: 10px;
+
+            color:
+                #102a43;
+
+            font-size: 25px;
+        }
+
+
+        .card p {
+
+            min-height: 75px;
+
+            margin-bottom: 25px;
+
+            color:
+                #64748b;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           BOTÃO
+        ========================================= */
+
+        .botao {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 100%;
+
+            min-height: 48px;
+
+            padding: 12px 18px;
+
+            color: white;
+
+            background:
+                #173f67;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition:
+                background 0.2s,
+                transform 0.2s;
+        }
+
+
+        .botao:hover {
+
+            background:
+                #0f3152;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================
+           BOTÃO VOLTAR
+        ========================================= */
+
+        .voltar {
+
+            display: block;
+
+            width: fit-content;
+
+            margin: 45px auto 0;
+
+            padding: 13px 25px;
+
+            color:
+                #173f67;
+
+            background:
+                #e7eef6;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition:
+                background 0.2s;
+        }
+
+
+        .voltar:hover {
+
+            background:
+                #dbeafe;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .rodape {
+
+            margin-top: 60px;
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            color: #dbeafe;
+
+            background:
+                #102a43;
+        }
+
+
+        .rodape h2 {
+
+            margin-bottom: 8px;
+
+            color: white;
+        }
+
+
+        .rodape p {
+
+            margin-bottom: 5px;
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .topo {
+
+                padding:
+                    50px 20px;
+            }
+
+
+            .container {
+
+                width: 94%;
+            }
+
+
+            .card {
+
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="topo">
+
+        <h1>
+            💰 Aonde posso investir?
+        </h1>
+
+
+        <p>
+            Pesquise as opções disponíveis nas instituições
+            financeiras abaixo e consulte as condições
+            diretamente nos sites oficiais.
+        </p>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="container">
+
+
+        <!-- AVISO -->
+
+        <div class="aviso">
+
+            <strong>
+                📌 Importante:
+            </strong>
+
+            Esta página serve apenas para facilitar o acesso
+            aos sites das instituições financeiras.
+            Ela não é uma recomendação de investimento.
+            Antes de investir, verifique as condições,
+            taxas, riscos, prazos e demais informações
+            diretamente com a instituição.
+
+        </div>
+
+
+
+        <!-- =========================================
+             BANCOS
+        ========================================== -->
+
+        <div class="grid">
+
+
+            <!-- NUBANK -->
+
+            <article class="card">
+
+                <div class="icone">
+                    🟣
+                </div>
+
+
+                <h2>
+                    Nubank
+                </h2>
+
+
+                <p>
+                    Acesse a página oficial de investimentos
+                    do Nubank e consulte as opções disponíveis.
+                </p>
+
+
+                <a
+                    href="https://nubank.com.br/nu/investimentos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="botao"
+                >
+                    Acessar Nubank
+                </a>
+
+            </article>
+
+
+
+            <!-- PICPAY -->
+
+            <article class="card">
+
+                <div class="icone">
+                    💚
+                </div>
+
+
+                <h2>
+                    PicPay
+                </h2>
+
+
+                <p>
+                    Conheça as opções de investimentos
+                    disponibilizadas pelo PicPay.
+                </p>
+
+
+                <a
+                    href="https://picpay.com/pt-br/pf/investimentos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="botao"
+                >
+                    Acessar PicPay
+                </a>
+
+            </article>
+
+
+
+            <!-- ITAÚ -->
+
+            <article class="card">
+
+                <div class="icone">
+                    🟠
+                </div>
+
+
+                <h2>
+                    Itaú
+                </h2>
+
+
+                <p>
+                    Consulte a página oficial de investimentos
+                    do Itaú e conheça os produtos disponíveis.
+                </p>
+
+
+                <a
+                    href="https://www.itau.com.br/investimentos/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="botao"
+                >
+                    Acessar Itaú
+                </a>
+
+            </article>
+
+
+
+            <!-- BRADESCO -->
+
+            <article class="card">
+
+                <div class="icone">
+                    🔴
+                </div>
+
+
+                <h2>
+                    Bradesco
+                </h2>
+
+
+                <p>
+                    Acesse a página oficial de investimentos
+                    do Bradesco.
+                </p>
+
+
+                <a
+                    href="https://banco.bradesco/html/classic/portal-investimentos/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="botao"
+                >
+                    Acessar Bradesco
+                </a>
+
+            </article>
+
+
+        </div>
+
+
+
+        <!-- =========================================
+             VOLTAR
+        ========================================== -->
+
+        <a
+            href="index.html"
+            class="voltar"
+        >
+            ← Voltar para o Bolso+
+        </a>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="rodape">
+
+        <h2>
+            💰 Bolso+
+        </h2>
+
+
+        <p>
+            Organize seu dinheiro. Alcance seus objetivos.
+        </p>
+
+
+        <p>
+            Pesquise e compare as opções antes de investir.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
 
