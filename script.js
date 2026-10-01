@@ -5,14 +5,65 @@
    CHAVES DO LOCAL STORAGE
 ========================================================= */
 
-const CHAVE_CADASTRO =
-    "granaFacilCadastro";
+const CHAVE_CADASTRO = "granaFacilCadastro";
+const CHAVE_GASTOS = "granaFacilGastos";
+const CHAVE_DINHEIRO = "granaFacilDinheiro";
 
-const CHAVE_GASTOS =
-    "granaFacilGastos";
 
-const CHAVE_DINHEIRO =
-    "granaFacilDinheiro";
+/* =========================================================
+   FUNÇÕES DO LOCAL STORAGE
+========================================================= */
+
+function carregarJSON(chave, valorPadrao) {
+
+    try {
+
+        const valor = localStorage.getItem(chave);
+
+        if (!valor) {
+            return valorPadrao;
+        }
+
+        return JSON.parse(valor);
+
+    } catch (erro) {
+
+        console.error("Erro ao carregar dados:", erro);
+
+        return valorPadrao;
+    }
+}
+
+
+function salvarJSON(chave, valor) {
+
+    localStorage.setItem(
+        chave,
+        JSON.stringify(valor)
+    );
+}
+
+
+/* =========================================================
+   DADOS
+========================================================= */
+
+let cadastro = carregarJSON(
+    CHAVE_CADASTRO,
+    null
+);
+
+let gastos = carregarJSON(
+    CHAVE_GASTOS,
+    []
+);
+
+let dinheiroDisponivel =
+    Number(
+        localStorage.getItem(
+            CHAVE_DINHEIRO
+        )
+    ) || 0;
 
 
 /* =========================================================
@@ -142,83 +193,7 @@ const textoResultado =
 ========================================================= */
 
 const botaoInvestimentos =
-    document.getElementById(
-        "botao-investimentos"
-    );
-
-
-/* =========================================================
-   CARREGAR DADOS
-========================================================= */
-
-let cadastro =
-    carregarJSON(
-        CHAVE_CADASTRO,
-        null
-    );
-
-
-let gastos =
-    carregarJSON(
-        CHAVE_GASTOS,
-        []
-    );
-
-
-let dinheiroDisponivel =
-    Number(
-        localStorage.getItem(
-            CHAVE_DINHEIRO
-        )
-    ) || 0;
-
-
-/* =========================================================
-   LOCAL STORAGE
-========================================================= */
-
-function carregarJSON(
-    chave,
-    valorPadrao
-) {
-
-    try {
-
-        const valor =
-            localStorage.getItem(chave);
-
-
-        if (!valor) {
-
-            return valorPadrao;
-        }
-
-
-        return JSON.parse(valor);
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao carregar dados:",
-            erro
-        );
-
-        return valorPadrao;
-    }
-}
-
-
-function salvarJSON(
-    chave,
-    valor
-) {
-
-    localStorage.setItem(
-        chave,
-        JSON.stringify(valor)
-    );
-
-}
+    document.getElementById("botao-investimentos");
 
 
 /* =========================================================
@@ -234,7 +209,6 @@ function moeda(valor) {
             currency: "BRL"
         }
     );
-
 }
 
 
@@ -259,7 +233,6 @@ function formatarCPF(valor) {
             /(\d{3})(\d{1,2})$/,
             "$1-$2"
         );
-
 }
 
 
@@ -267,7 +240,6 @@ function validarCPF(cpf) {
 
     const numeros =
         cpf.replace(/\D/g, "");
-
 
     if (
         numeros.length !== 11 ||
@@ -290,7 +262,6 @@ function validarCPF(cpf) {
         soma +=
             Number(numeros[i]) *
             (10 - i);
-
     }
 
 
@@ -327,7 +298,6 @@ function validarCPF(cpf) {
         soma +=
             Number(numeros[i]) *
             (11 - i);
-
     }
 
 
@@ -347,7 +317,6 @@ function validarCPF(cpf) {
         segundoDigito ===
         Number(numeros[10])
     );
-
 }
 
 
@@ -376,7 +345,6 @@ function formatarTelefone(valor) {
                 /(\d{4})(\d)/,
                 "$1-$2"
             );
-
     }
 
 
@@ -389,7 +357,6 @@ function formatarTelefone(valor) {
             /(\d{5})(\d)/,
             "$1-$2"
         );
-
 }
 
 
@@ -402,13 +369,15 @@ function mostrarMensagemCadastro(
     tipo
 ) {
 
+    if (!mensagemCadastro) {
+        return;
+    }
+
     mensagemCadastro.textContent =
         texto;
 
-
     mensagemCadastro.className =
         "mensagem " + tipo;
-
 }
 
 
@@ -416,124 +385,141 @@ function mostrarMensagemCadastro(
    MÁSCARA CPF
 ========================================================= */
 
-cpfInput.addEventListener(
-    "input",
-    function () {
+if (cpfInput) {
 
-        this.value =
-            formatarCPF(
-                this.value
-            );
+    cpfInput.addEventListener(
+        "input",
+        function () {
 
-    }
-);
+            this.value =
+                formatarCPF(
+                    this.value
+                );
+
+        }
+    );
+}
 
 
 /* =========================================================
    MÁSCARA TELEFONE
 ========================================================= */
 
-telefoneInput.addEventListener(
-    "input",
-    function () {
+if (telefoneInput) {
 
-        this.value =
-            formatarTelefone(
-                this.value
-            );
+    telefoneInput.addEventListener(
+        "input",
+        function () {
 
-    }
-);
+            this.value =
+                formatarTelefone(
+                    this.value
+                );
+
+        }
+    );
+}
 
 
 /* =========================================================
    SALVAR CADASTRO
 ========================================================= */
 
-formCadastro.addEventListener(
-    "submit",
-    function (evento) {
+if (formCadastro) {
 
-        evento.preventDefault();
+    formCadastro.addEventListener(
+        "submit",
+        function (evento) {
+
+            evento.preventDefault();
 
 
-        /* Validação do CPF */
+            if (
+                !validarCPF(
+                    cpfInput.value
+                )
+            ) {
 
-        if (
-            !validarCPF(
-                cpfInput.value
-            )
-        ) {
+                mostrarMensagemCadastro(
+                    "CPF inválido. Verifique os números.",
+                    "erro"
+                );
 
-            mostrarMensagemCadastro(
-                "CPF inválido. Verifique os números.",
-                "erro"
+                cpfInput.focus();
+
+                return;
+            }
+
+
+            cadastro = {
+
+                nome:
+                    nomeInput.value.trim(),
+
+                sobrenome:
+                    sobrenomeInput.value.trim(),
+
+                cpf:
+                    cpfInput.value,
+
+                dataNascimento:
+                    nascimentoInput.value,
+
+                email:
+                    emailInput.value.trim(),
+
+                telefone:
+                    telefoneInput.value
+
+            };
+
+
+            salvarJSON(
+                CHAVE_CADASTRO,
+                cadastro
             );
 
 
-            cpfInput.focus();
+            mostrarCadastro();
 
 
-            return;
+            /*
+               ESTA É A MENSAGEM
+               "Cadastro salvo com sucesso!"
+            */
+
+            mostrarMensagemCadastro(
+                "Cadastro salvo com sucesso!",
+                "sucesso"
+            );
+
+
+            /*
+               Mantém a mensagem visível
+               por alguns segundos.
+            */
+
+            setTimeout(
+                function () {
+
+                    if (
+                        mensagemCadastro &&
+                        mensagemCadastro.textContent ===
+                        "Cadastro salvo com sucesso!"
+                    ) {
+
+                        mensagemCadastro.textContent =
+                            "";
+
+                    }
+
+                },
+                5000
+            );
 
         }
-
-
-        /* Cria objeto do cadastro */
-
-        cadastro = {
-
-            nome:
-                nomeInput.value.trim(),
-
-            sobrenome:
-                sobrenomeInput.value.trim(),
-
-            cpf:
-                cpfInput.value,
-
-            dataNascimento:
-                nascimentoInput.value,
-
-            email:
-                emailInput.value.trim(),
-
-            telefone:
-                telefoneInput.value
-
-        };
-
-
-        /* Salva cadastro */
-
-        salvarJSON(
-            CHAVE_CADASTRO,
-            cadastro
-        );
-
-
-        /* Atualiza cadastro visual */
-
-        mostrarCadastro();
-
-
-        /* MOSTRA A MENSAGEM */
-
-        mostrarMensagemCadastro(
-            "Cadastro salvo com sucesso!",
-            "sucesso"
-        );
-
-
-        /* Rola suavemente até a mensagem */
-
-        mensagemCadastro.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
-
-    }
-);
+    );
+}
 
 
 /* =========================================================
@@ -544,68 +530,101 @@ function mostrarCadastro() {
 
     if (!cadastro) {
 
-        cadastroSalvo.classList.add(
-            "oculto"
-        );
+        if (cadastroSalvo) {
+
+            cadastroSalvo.classList.add(
+                "oculto"
+            );
+
+        }
 
         return;
     }
 
 
-    nomeCadastrado.textContent =
-        cadastro.nome +
-        " " +
-        cadastro.sobrenome;
+    if (nomeCadastrado) {
+
+        nomeCadastrado.textContent =
+            `${cadastro.nome} ${cadastro.sobrenome}`;
+
+    }
 
 
-    emailCadastrado.textContent =
-        cadastro.email +
-        " • " +
-        cadastro.telefone;
+    if (emailCadastrado) {
+
+        emailCadastrado.textContent =
+            `${cadastro.email} • ${cadastro.telefone}`;
+
+    }
 
 
-    cadastroSalvo.classList.remove(
-        "oculto"
-    );
+    if (cadastroSalvo) {
 
+        cadastroSalvo.classList.remove(
+            "oculto"
+        );
+
+    }
 }
 
 
 /* =========================================================
-   PREENCHER CADASTRO
+   PREENCHER CADASTRO SALVO
 ========================================================= */
 
 function preencherCadastro() {
 
     if (!cadastro) {
-
         return;
     }
 
 
-    nomeInput.value =
-        cadastro.nome || "";
+    if (nomeInput) {
+
+        nomeInput.value =
+            cadastro.nome || "";
+
+    }
 
 
-    sobrenomeInput.value =
-        cadastro.sobrenome || "";
+    if (sobrenomeInput) {
+
+        sobrenomeInput.value =
+            cadastro.sobrenome || "";
+
+    }
 
 
-    cpfInput.value =
-        cadastro.cpf || "";
+    if (cpfInput) {
+
+        cpfInput.value =
+            cadastro.cpf || "";
+
+    }
 
 
-    nascimentoInput.value =
-        cadastro.dataNascimento || "";
+    if (nascimentoInput) {
+
+        nascimentoInput.value =
+            cadastro.dataNascimento || "";
+
+    }
 
 
-    emailInput.value =
-        cadastro.email || "";
+    if (emailInput) {
+
+        emailInput.value =
+            cadastro.email || "";
+
+    }
 
 
-    telefoneInput.value =
-        cadastro.telefone || "";
+    if (telefoneInput) {
 
+        telefoneInput.value =
+            cadastro.telefone || "";
+
+    }
 }
 
 
@@ -613,109 +632,123 @@ function preencherCadastro() {
    LIMPAR CADASTRO
 ========================================================= */
 
-limparCadastro.addEventListener(
-    "click",
-    function () {
+if (limparCadastro) {
 
-        cadastro = null;
+    limparCadastro.addEventListener(
+        "click",
+        function () {
 
-
-        localStorage.removeItem(
-            CHAVE_CADASTRO
-        );
+            cadastro = null;
 
 
-        formCadastro.reset();
+            localStorage.removeItem(
+                CHAVE_CADASTRO
+            );
 
 
-        cadastroSalvo.classList.add(
-            "oculto"
-        );
+            if (formCadastro) {
+
+                formCadastro.reset();
+
+            }
 
 
-        mostrarMensagemCadastro(
-            "Cadastro removido.",
-            "sucesso"
-        );
+            if (cadastroSalvo) {
 
-    }
-);
+                cadastroSalvo.classList.add(
+                    "oculto"
+                );
+
+            }
+
+
+            mostrarMensagemCadastro(
+                "Cadastro removido.",
+                "sucesso"
+            );
+
+        }
+    );
+}
 
 
 /* =========================================================
    ADICIONAR GASTO / RECEITA
 ========================================================= */
 
-formGasto.addEventListener(
-    "submit",
-    function (evento) {
+if (formGasto) {
 
-        evento.preventDefault();
+    formGasto.addEventListener(
+        "submit",
+        function (evento) {
 
-
-        const descricao =
-            descricaoInput.value.trim();
+            evento.preventDefault();
 
 
-        const valor =
-            Number(
-                valorInput.value
+            const descricao =
+                descricaoInput.value.trim();
+
+
+            const valor =
+                Number(
+                    valorInput.value
+                );
+
+
+            if (
+                !descricao ||
+                !valor ||
+                valor <= 0
+            ) {
+
+                return;
+            }
+
+
+            const movimentacao = {
+
+                id:
+                    Date.now(),
+
+                descricao:
+                    descricao,
+
+                categoria:
+                    categoriaInput.value,
+
+                dia:
+                    diaInput.value,
+
+                tipo:
+                    tipoInput.value,
+
+                valor:
+                    valor
+
+            };
+
+
+            gastos.push(
+                movimentacao
             );
 
 
-        if (
-            !descricao ||
-            !valor ||
-            valor <= 0
-        ) {
+            salvarJSON(
+                CHAVE_GASTOS,
+                gastos
+            );
 
-            return;
+
+            formGasto.reset();
+
+
+            renderizarGastos();
+
+            atualizarResumo();
+
         }
-
-
-        const movimentacao = {
-
-            id:
-                Date.now(),
-
-            descricao:
-                descricao,
-
-            categoria:
-                categoriaInput.value,
-
-            dia:
-                diaInput.value,
-
-            tipo:
-                tipoInput.value,
-
-            valor:
-                valor
-
-        };
-
-
-        gastos.push(
-            movimentacao
-        );
-
-
-        salvarJSON(
-            CHAVE_GASTOS,
-            gastos
-        );
-
-
-        formGasto.reset();
-
-
-        renderizarGastos();
-
-        atualizarResumo();
-
-    }
-);
+    );
+}
 
 
 /* =========================================================
@@ -724,6 +757,11 @@ formGasto.addEventListener(
 
 function renderizarGastos() {
 
+    if (!tabelaGastos) {
+        return;
+    }
+
+
     tabelaGastos.innerHTML = "";
 
 
@@ -731,15 +769,23 @@ function renderizarGastos() {
         gastos.length === 0
     ) {
 
-        tabelaVazia.style.display =
-            "block";
+        if (tabelaVazia) {
+
+            tabelaVazia.style.display =
+                "block";
+
+        }
 
         return;
     }
 
 
-    tabelaVazia.style.display =
-        "none";
+    if (tabelaVazia) {
+
+        tabelaVazia.style.display =
+            "none";
+
+    }
 
 
     gastos.forEach(
@@ -791,8 +837,7 @@ function renderizarGastos() {
 
 
             tipoSpan.className =
-                "tipo " +
-                gasto.tipo;
+                `tipo ${gasto.tipo}`;
 
 
             tipoSpan.textContent =
@@ -813,7 +858,9 @@ function renderizarGastos() {
 
 
             tdValor.textContent =
-                moeda(gasto.valor);
+                moeda(
+                    gasto.valor
+                );
 
 
             tdValor.className =
@@ -894,7 +941,6 @@ function renderizarGastos() {
 
         }
     );
-
 }
 
 
@@ -923,7 +969,6 @@ function excluirGasto(id) {
     renderizarGastos();
 
     atualizarResumo();
-
 }
 
 
@@ -931,45 +976,48 @@ function excluirGasto(id) {
    LIMPAR TODOS OS GASTOS
 ========================================================= */
 
-limparGastos.addEventListener(
-    "click",
-    function () {
+if (limparGastos) {
 
-        if (
-            gastos.length === 0
-        ) {
+    limparGastos.addEventListener(
+        "click",
+        function () {
 
-            return;
-        }
+            if (
+                gastos.length === 0
+            ) {
+
+                return;
+            }
 
 
-        const confirmar =
-            confirm(
-                "Tem certeza que deseja apagar todos os lançamentos?"
+            const confirmar =
+                confirm(
+                    "Tem certeza que deseja apagar todos os lançamentos?"
+                );
+
+
+            if (!confirmar) {
+
+                return;
+            }
+
+
+            gastos = [];
+
+
+            salvarJSON(
+                CHAVE_GASTOS,
+                gastos
             );
 
 
-        if (!confirmar) {
+            renderizarGastos();
 
-            return;
+            atualizarResumo();
+
         }
-
-
-        gastos = [];
-
-
-        salvarJSON(
-            CHAVE_GASTOS,
-            gastos
-        );
-
-
-        renderizarGastos();
-
-        atualizarResumo();
-
-    }
-);
+    );
+}
 
 
 /* =========================================================
@@ -991,12 +1039,16 @@ function calcularResumo() {
             ) {
 
                 receitas +=
-                    Number(gasto.valor);
+                    Number(
+                        gasto.valor
+                    );
 
             } else {
 
                 despesas +=
-                    Number(gasto.valor);
+                    Number(
+                        gasto.valor
+                    );
 
             }
 
@@ -1009,13 +1061,10 @@ function calcularResumo() {
 
 
     return {
-
         receitas,
         despesas,
         saldo
-
     };
-
 }
 
 
@@ -1029,26 +1078,37 @@ function atualizarResumo() {
         calcularResumo();
 
 
-    receitasDestaque.textContent =
-        moeda(
-            resumo.receitas
-        );
+    if (receitasDestaque) {
+
+        receitasDestaque.textContent =
+            moeda(
+                resumo.receitas
+            );
+
+    }
 
 
-    despesasDestaque.textContent =
-        moeda(
-            resumo.despesas
-        );
+    if (despesasDestaque) {
+
+        despesasDestaque.textContent =
+            moeda(
+                resumo.despesas
+            );
+
+    }
 
 
-    saldoDestaque.textContent =
-        moeda(
-            resumo.saldo
-        );
+    if (saldoDestaque) {
+
+        saldoDestaque.textContent =
+            moeda(
+                resumo.saldo
+            );
+
+    }
 
 
     atualizarResultado();
-
 }
 
 
@@ -1056,30 +1116,33 @@ function atualizarResumo() {
    DINHEIRO DISPONÍVEL
 ========================================================= */
 
-dinheiroInput.value =
-    dinheiroDisponivel || "";
+if (dinheiroInput) {
+
+    dinheiroInput.value =
+        dinheiroDisponivel || "";
 
 
-dinheiroInput.addEventListener(
-    "input",
-    function () {
+    dinheiroInput.addEventListener(
+        "input",
+        function () {
 
-        dinheiroDisponivel =
-            Number(
-                this.value
-            ) || 0;
-
-
-        localStorage.setItem(
-            CHAVE_DINHEIRO,
-            dinheiroDisponivel
-        );
+            dinheiroDisponivel =
+                Number(
+                    this.value
+                ) || 0;
 
 
-        atualizarResultado();
+            localStorage.setItem(
+                CHAVE_DINHEIRO,
+                dinheiroDisponivel
+            );
 
-    }
-);
+
+            atualizarResultado();
+
+        }
+    );
+}
 
 
 /* =========================================================
@@ -1087,6 +1150,16 @@ dinheiroInput.addEventListener(
 ========================================================= */
 
 function atualizarResultado() {
+
+    if (
+        !valorTenho ||
+        !valorGasto ||
+        !valorRestante
+    ) {
+
+        return;
+    }
+
 
     const resumo =
         calcularResumo();
@@ -1123,68 +1196,111 @@ function atualizarResultado() {
         restante >= 0
     ) {
 
-        labelRestante.textContent =
-            "💵 Vai sobrar";
+        if (labelRestante) {
+
+            labelRestante.textContent =
+                "💵 Vai sobrar";
+
+        }
 
 
         valorRestante.className =
             "valor-positivo";
 
 
-        resultadoRestanteCard.style.borderColor =
-            "#173f67";
+        if (resultadoRestanteCard) {
+
+            resultadoRestanteCard.style.borderColor =
+                "#173f67";
+
+        }
 
 
-        mensagemResultado.className =
-            "mensagem-resultado positivo";
+        if (mensagemResultado) {
+
+            mensagemResultado.className =
+                "mensagem-resultado positivo";
+
+        }
 
 
-        iconeResultado.textContent =
-            "💰";
+        if (iconeResultado) {
+
+            iconeResultado.textContent =
+                "💰";
+
+        }
 
 
-        tituloResultado.textContent =
-            "Seu dinheiro é suficiente";
+        if (tituloResultado) {
+
+            tituloResultado.textContent =
+                "Seu dinheiro é suficiente";
+
+        }
 
 
-        textoResultado.textContent =
-            "Depois das despesas registradas, você terá " +
-            moeda(restante) +
-            " disponíveis.";
+        if (textoResultado) {
+
+            textoResultado.textContent =
+                `Depois das despesas registradas, você terá ${moeda(restante)} disponíveis.`;
+
+        }
 
     } else {
 
-        labelRestante.textContent =
-            "⚠️ Vai faltar";
+        if (labelRestante) {
+
+            labelRestante.textContent =
+                "⚠️ Vai faltar";
+
+        }
 
 
         valorRestante.className =
             "valor-negativo";
 
 
-        resultadoRestanteCard.style.borderColor =
-            "#ff4545";
+        if (resultadoRestanteCard) {
+
+            resultadoRestanteCard.style.borderColor =
+                "#ff4545";
+
+        }
 
 
-        mensagemResultado.className =
-            "mensagem-resultado negativo";
+        if (mensagemResultado) {
+
+            mensagemResultado.className =
+                "mensagem-resultado negativo";
+
+        }
 
 
-        iconeResultado.textContent =
-            "⚠️";
+        if (iconeResultado) {
+
+            iconeResultado.textContent =
+                "⚠️";
+
+        }
 
 
-        tituloResultado.textContent =
-            "Atenção aos gastos";
+        if (tituloResultado) {
+
+            tituloResultado.textContent =
+                "Atenção aos gastos";
+
+        }
 
 
-        textoResultado.textContent =
-            "As despesas ultrapassam o valor informado em " +
-            moeda(Math.abs(restante)) +
-            ".";
+        if (textoResultado) {
+
+            textoResultado.textContent =
+                `As despesas ultrapassam o valor informado em ${moeda(Math.abs(restante))}.`;
+
+        }
 
     }
-
 }
 
 
@@ -1192,21 +1308,28 @@ function atualizarResultado() {
    INVESTIMENTOS
 ========================================================= */
 
-botaoInvestimentos.addEventListener(
-    "click",
-    function () {
+if (botaoInvestimentos) {
 
-        abrirPaginaInvestimentos();
+    botaoInvestimentos.addEventListener(
+        "click",
+        function () {
 
-    }
-);
+            abrirPaginaInvestimentos();
+
+        }
+    );
+}
 
 
 /* =========================================================
-   PÁGINA DE INVESTIMENTOS
+   ABRIR PÁGINA DE INVESTIMENTOS
 ========================================================= */
 
 function abrirPaginaInvestimentos() {
+
+    /*
+       Abre uma nova aba.
+    */
 
     const novaAba =
         window.open(
@@ -1236,539 +1359,483 @@ function abrirPaginaInvestimentos() {
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>
-        Bolso+ | Onde investir
-    </title>
+<title>Bolso+ | Onde investir</title>
 
+<style>
 
-    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
 
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-        body {
+    color: #1f2937;
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+    background: #f4f6f8;
 
-            color: #1f2937;
+    line-height: 1.6;
+}
 
-            background: #f4f6f8;
+.topo {
 
-            line-height: 1.6;
+    padding: 65px 20px;
 
-        }
+    text-align: center;
 
+    color: white;
 
-        .topo {
+    background:
+        linear-gradient(
+            135deg,
+            #102a43,
+            #173f67
+        );
+}
 
-            padding: 70px 20px;
+.topo h1 {
 
-            text-align: center;
+    margin-bottom: 12px;
 
-            color: white;
+    font-size:
+        clamp(32px, 5vw, 52px);
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #102a43,
-                    #173f67
-                );
+.topo p {
 
-        }
+    max-width: 750px;
 
+    margin: auto;
 
-        .topo h1 {
+    color: #dbeafe;
 
-            margin-bottom: 12px;
+    font-size: 18px;
+}
 
-            font-size:
-                clamp(32px, 5vw, 52px);
+.container {
 
-        }
+    width: min(
+        1100px,
+        92%
+    );
 
+    margin: 45px auto;
+}
 
-        .topo p {
+.aviso {
 
-            max-width: 750px;
+    margin-bottom: 30px;
 
-            margin: auto;
+    padding: 20px;
 
-            color: #dbeafe;
+    color: #334155;
 
-            font-size: 18px;
+    background: white;
 
-        }
+    border:
+        1px solid #dfe5e9;
 
+    border-radius: 15px;
 
-        .container {
+    box-shadow:
+        0 10px 30px
+        rgba(
+            15,
+            23,
+            42,
+            0.07
+        );
+}
 
-            width: min(
-                1100px,
-                92%
-            );
+.aviso strong {
 
-            margin: 45px auto;
+    color: #102a43;
+}
 
-        }
+.grid {
 
+    display: grid;
 
-        .aviso {
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
-            margin-bottom: 30px;
+    gap: 22px;
+}
 
-            padding: 20px;
+.card {
 
-            color: #334155;
+    padding: 28px;
 
-            background: white;
+    background: white;
 
-            border:
-                1px solid #dfe5e9;
+    border:
+        1px solid #dfe5e9;
 
-            border-radius: 15px;
+    border-radius: 18px;
 
-            box-shadow:
-                0 10px 30px
-                rgba(
-                    15,
-                    23,
-                    42,
-                    0.07
-                );
+    box-shadow:
+        0 10px 30px
+        rgba(
+            15,
+            23,
+            42,
+            0.07
+        );
 
-        }
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
 
+.card:hover {
 
-        .aviso strong {
+    transform:
+        translateY(-5px);
 
-            color: #102a43;
+    box-shadow:
+        0 18px 35px
+        rgba(
+            15,
+            23,
+            42,
+            0.12
+        );
+}
 
-        }
+.icone {
 
+    display: flex;
 
-        .grid {
+    align-items: center;
 
-            display: grid;
+    justify-content: center;
 
-            grid-template-columns:
-                repeat(
-                    2,
-                    minmax(
-                        0,
-                        1fr
-                    )
-                );
+    width: 65px;
 
-            gap: 22px;
+    height: 65px;
 
-        }
+    margin-bottom: 18px;
 
+    color: white;
 
-        .card {
+    background: #173f67;
 
-            padding: 28px;
+    border-radius: 16px;
 
-            background: white;
+    font-size: 30px;
+}
 
-            border:
-                1px solid #dfe5e9;
+.card h2 {
 
-            border-radius: 18px;
+    margin-bottom: 8px;
 
-            box-shadow:
-                0 10px 30px
-                rgba(
-                    15,
-                    23,
-                    42,
-                    0.07
-                );
+    color: #102a43;
 
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
+    font-size: 23px;
+}
 
-        }
+.card p {
 
+    min-height: 75px;
 
-        .card:hover {
+    margin-bottom: 20px;
 
-            transform:
-                translateY(-5px);
+    color: #64748b;
+}
 
-            box-shadow:
-                0 18px 35px
-                rgba(
-                    15,
-                    23,
-                    42,
-                    0.12
-                );
+.botao {
 
-        }
+    display: inline-flex;
 
+    align-items: center;
 
-        .icone {
+    justify-content: center;
 
-            display: flex;
+    width: 100%;
 
-            align-items: center;
+    min-height: 46px;
 
-            justify-content: center;
+    padding: 10px 18px;
 
-            width: 65px;
+    color: white;
 
-            height: 65px;
+    background: #173f67;
 
-            margin-bottom: 18px;
+    border-radius: 9px;
 
-            color: white;
+    font-weight: 800;
 
-            background: #173f67;
+    text-decoration: none;
 
-            border-radius: 16px;
+    transition: 0.2s;
+}
 
-            font-size: 30px;
+.botao:hover {
 
-        }
+    background: #0f3152;
+}
 
+.voltar {
 
-        .card h2 {
+    display: block;
 
-            margin-bottom: 8px;
+    width: fit-content;
 
-            color: #102a43;
+    margin: 45px auto 0;
 
-            font-size: 23px;
+    padding: 13px 25px;
 
-        }
+    color: #173f67;
 
+    background: #e7eef6;
 
-        .card p {
+    border-radius: 10px;
 
-            min-height: 75px;
+    font-weight: 800;
 
-            margin-bottom: 20px;
+    text-decoration: none;
+}
 
-            color: #64748b;
+.rodape {
 
-        }
+    margin-top: 60px;
 
+    padding: 35px 20px;
 
-        .botao {
+    text-align: center;
 
-            display: inline-flex;
+    color: #dbeafe;
 
-            align-items: center;
+    background: #102a43;
+}
 
-            justify-content: center;
+.rodape p {
 
-            width: 100%;
+    margin-bottom: 5px;
+}
 
-            min-height: 46px;
+@media (max-width: 650px) {
 
-            padding: 10px 18px;
+    .grid {
 
-            color: white;
+        grid-template-columns: 1fr;
+    }
 
-            background: #173f67;
+    .topo {
 
-            border-radius: 9px;
+        padding:
+            50px 20px;
+    }
 
-            font-weight: 800;
+    .container {
 
-            text-decoration: none;
+        width: 94%;
+    }
+}
 
-            transition: 0.2s;
-
-        }
-
-
-        .botao:hover {
-
-            background: #0f3152;
-
-        }
-
-
-        .voltar {
-
-            display: block;
-
-            width: fit-content;
-
-            margin: 45px auto 0;
-
-            padding: 13px 25px;
-
-            color: #173f67;
-
-            background: #e7eef6;
-
-            border-radius: 10px;
-
-            font-weight: 800;
-
-            text-decoration: none;
-
-        }
-
-
-        .rodape {
-
-            margin-top: 60px;
-
-            padding: 35px 20px;
-
-            text-align: center;
-
-            color: #dbeafe;
-
-            background: #102a43;
-
-        }
-
-
-        .rodape p {
-
-            margin-bottom: 5px;
-
-        }
-
-
-        @media (max-width: 650px) {
-
-            .grid {
-
-                grid-template-columns: 1fr;
-
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
-
 
 <body>
 
 
-    <header class="topo">
+<header class="topo">
 
-        <h1>
-            💰 Onde posso investir?
-        </h1>
+    <h1>
+        💰 Onde posso investir?
+    </h1>
 
+    <p>
+        Conheça algumas instituições financeiras
+        onde você pode pesquisar opções de investimentos.
+    </p>
 
-        <p>
-            Pesquise as opções de investimentos oferecidas
-            pelas instituições abaixo e confira as condições
-            diretamente nos sites oficiais.
-        </p>
+</header>
 
-    </header>
 
+<main class="container">
 
 
-    <main class="container">
+<div class="aviso">
 
+    <strong>
+        📌 Importante:
+    </strong>
 
-        <div class="aviso">
+    Esta página apresenta instituições onde você
+    pode pesquisar investimentos. Ela não representa
+    recomendação de investimento. Verifique as
+    condições, taxas, riscos e produtos diretamente
+    com cada instituição.
 
-            <strong>
-                📌 Importante:
-            </strong>
+</div>
 
-            Esta página serve para facilitar a pesquisa.
-            Ela não representa recomendação de investimento.
-            As opções, taxas, rentabilidades e condições podem
-            mudar. Verifique sempre as informações diretamente
-            com cada instituição.
 
-        </div>
+<div class="grid">
 
 
+<!-- NUBANK -->
 
-        <div class="grid">
+<article class="card">
 
+    <div class="icone">
+        🟣
+    </div>
 
-            <!-- NUBANK -->
+    <h2>
+        Nubank
+    </h2>
 
-            <article class="card">
+    <p>
+        Instituição financeira digital que oferece
+        produtos financeiros e opções de investimento.
+    </p>
 
-                <div class="icone">
-                    🟣
-                </div>
+    <a
+        class="botao"
+        href="https://nubank.com.br/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        Visitar Nubank
+    </a>
 
+</article>
 
-                <h2>
-                    Nubank
-                </h2>
 
+<!-- PICPAY -->
 
-                <p>
-                    Instituição financeira digital que oferece
-                    produtos financeiros e opções relacionadas
-                    a investimentos.
-                </p>
+<article class="card">
 
+    <div class="icone">
+        💚
+    </div>
 
-                <a
-                    class="botao"
-                    href="https://nubank.com.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Nubank
-                </a>
+    <h2>
+        PicPay
+    </h2>
 
-            </article>
+    <p>
+        Plataforma financeira digital com serviços
+        financeiros e opções relacionadas a investimentos.
+    </p>
 
+    <a
+        class="botao"
+        href="https://picpay.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        Visitar PicPay
+    </a>
 
+</article>
 
-            <!-- PICPAY -->
 
-            <article class="card">
+<!-- ITAÚ -->
 
-                <div class="icone">
-                    💳
-                </div>
+<article class="card">
 
+    <div class="icone">
+        💳
+    </div>
 
-                <h2>
-                    PicPay
-                </h2>
+    <h2>
+        Itaú
+    </h2>
 
+    <p>
+        Banco que oferece produtos financeiros e
+        diferentes opções de investimento.
+    </p>
 
-                <p>
-                    Plataforma financeira digital que oferece
-                    serviços financeiros e produtos para seus
-                    usuários.
-                </p>
+    <a
+        class="botao"
+        href="https://www.itau.com.br/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        Visitar Itaú
+    </a>
 
+</article>
 
-                <a
-                    class="botao"
-                    href="https://picpay.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar PicPay
-                </a>
 
-            </article>
+<!-- BRADESCO -->
 
+<article class="card">
 
+    <div class="icone">
+        🏦
+    </div>
 
-            <!-- ITAÚ -->
+    <h2>
+        Bradesco
+    </h2>
 
-            <article class="card">
+    <p>
+        Instituição financeira que oferece serviços
+        bancários e produtos de investimento.
+    </p>
 
-                <div class="icone">
-                    🏦
-                </div>
+    <a
+        class="botao"
+        href="https://banco.bradesco/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        Visitar Bradesco
+    </a>
 
+</article>
 
-                <h2>
-                    Itaú
-                </h2>
 
+</div>
 
-                <p>
-                    Banco que oferece serviços financeiros,
-                    produtos bancários e alternativas de
-                    investimento para seus clientes.
-                </p>
 
+<a
+    href="#"
+    class="voltar"
+    onclick="window.close(); return false;"
+>
+    ← Voltar para o Bolso+
+</a>
 
-                <a
-                    class="botao"
-                    href="https://www.itau.com.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Itaú
-                </a>
 
-            </article>
+</main>
 
 
+<footer class="rodape">
 
-            <!-- BRADESCO -->
+    <p>
+        💰 Bolso+ - Controle Financeiro
+    </p>
 
-            <article class="card">
+    <p>
+        Pesquise e compare as opções antes de investir.
+    </p>
 
-                <div class="icone">
-                    💼
-                </div>
-
-
-                <h2>
-                    Bradesco
-                </h2>
-
-
-                <p>
-                    Instituição financeira que oferece serviços
-                    bancários e diferentes produtos financeiros,
-                    incluindo investimentos.
-                </p>
-
-
-                <a
-                    class="botao"
-                    href="https://banco.bradesco/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Visitar Bradesco
-                </a>
-
-            </article>
-
-        </div>
-
-
-
-        <a
-            href="#"
-            class="voltar"
-            onclick="window.close(); return false;"
-        >
-            ← Voltar para o Bolso+
-        </a>
-
-    </main>
-
-
-
-    <footer class="rodape">
-
-        <p>
-            💰 Bolso+ - Controle Financeiro
-        </p>
-
-
-        <p>
-            Pesquise e compare as opções antes de investir.
-        </p>
-
-    </footer>
+</footer>
 
 
 </body>
