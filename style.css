@@ -8,6 +8,9 @@
     --vermelho: #ff4545;
     --vermelho-claro: #fee2e2;
 
+    --verde: #15803d;
+    --verde-claro: #dcfce7;
+
     --texto: #1f2937;
     --texto-secundario: #64748b;
 
@@ -21,7 +24,9 @@
 }
 
 
-/* ================= RESET ================= */
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -60,7 +65,9 @@ select {
 }
 
 
-/* ================= HEADER ================= */
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header {
 
@@ -100,6 +107,8 @@ select {
     font-weight: 800;
 
     text-decoration: none;
+
+    white-space: nowrap;
 }
 
 
@@ -108,6 +117,8 @@ nav {
     display: flex;
 
     gap: 28px;
+
+    align-items: center;
 }
 
 
@@ -128,10 +139,14 @@ nav a {
 nav a:hover {
 
     color: var(--azul);
+
+    transform: translateY(-1px);
 }
 
 
-/* ================= INÍCIO ================= */
+/* =========================================================
+   INÍCIO
+========================================================= */
 
 .inicio {
 
@@ -207,7 +222,9 @@ nav a:hover {
 }
 
 
-/* ================= BOTÕES ================= */
+/* =========================================================
+   BOTÕES
+========================================================= */
 
 .botao-principal,
 .botao-secundario,
@@ -251,6 +268,8 @@ nav a:hover {
 
 .botao-principal:hover {
 
+    color: white;
+
     background:
         var(--azul-hover);
 
@@ -274,6 +293,8 @@ nav a:hover {
 .botao-secundario:hover {
 
     background: #e2e8f0;
+
+    transform: translateY(-1px);
 }
 
 
@@ -291,10 +312,14 @@ nav a:hover {
 .botao-perigo:hover {
 
     background: #fecaca;
+
+    transform: translateY(-1px);
 }
 
 
-/* ================= CARTÃO DO INÍCIO ================= */
+/* =========================================================
+   CARTÃO DO INÍCIO
+========================================================= */
 
 .cartao-saldo {
 
@@ -344,7 +369,8 @@ nav a:hover {
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 20px;
 }
@@ -378,7 +404,9 @@ nav a:hover {
 }
 
 
-/* ================= SEÇÕES ================= */
+/* =========================================================
+   SEÇÕES
+========================================================= */
 
 .secao {
 
@@ -429,7 +457,9 @@ nav a:hover {
 }
 
 
-/* ================= FORMULÁRIOS ================= */
+/* =========================================================
+   FORMULÁRIOS
+========================================================= */
 
 .card-formulario {
 
@@ -568,7 +598,9 @@ nav a:hover {
 }
 
 
-/* ================= CADASTRO SALVO ================= */
+/* =========================================================
+   CADASTRO SALVO
+========================================================= */
 
 .cadastro-salvo {
 
@@ -638,11 +670,13 @@ nav a:hover {
 
 .oculto {
 
-    display: none;
+    display: none !important;
 }
 
 
-/* ================= TABELA ================= */
+/* =========================================================
+   TABELA
+========================================================= */
 
 .tabela-container {
 
@@ -779,6 +813,8 @@ tbody tr:hover {
     font-weight: 800;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 
@@ -786,6 +822,8 @@ tbody tr:hover {
 
     background:
         #fecaca;
+
+    transform: translateY(-1px);
 }
 
 
@@ -817,7 +855,9 @@ tbody tr:hover {
 }
 
 
-/* ================= RESULTADO ================= */
+/* =========================================================
+   RESULTADO
+========================================================= */
 
 .dinheiro-card {
 
@@ -876,7 +916,9 @@ tbody tr:hover {
 }
 
 
-/* ================= RESUMO ================= */
+/* =========================================================
+   RESUMO
+========================================================= */
 
 .resultado-grid {
 
@@ -942,7 +984,9 @@ tbody tr:hover {
 }
 
 
-/* ================= MENSAGEM FINAL ================= */
+/* =========================================================
+   MENSAGEM FINAL
+========================================================= */
 
 .mensagem-resultado {
 
@@ -1022,7 +1066,9 @@ tbody tr:hover {
 }
 
 
-/* ================= INVESTIMENTOS ================= */
+/* =========================================================
+   INVESTIMENTOS
+========================================================= */
 
 .secao-investimentos {
 
@@ -1107,16 +1153,339 @@ tbody tr:hover {
 }
 
 
-/* ================= FOOTER ================= */
+/* =========================================================
+   PÁGINA DE INVESTIMENTOS
+   Estas classes também podem ser usadas pelo JavaScript
+   caso ele gere a página de investimentos.
+========================================================= */
+
+.pagina-investimentos {
+
+    min-height: 100vh;
+
+    background:
+        var(--fundo);
+}
+
+
+.topo-investimentos {
+
+    padding:
+        70px 20px;
+
+    text-align:
+        center;
+
+    color:
+        white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--azul-marinho),
+            var(--azul)
+        );
+}
+
+
+.topo-investimentos h1 {
+
+    margin-bottom: 12px;
+
+    font-size:
+        clamp(32px, 5vw, 52px);
+}
+
+
+.topo-investimentos p {
+
+    max-width: 750px;
+
+    margin:
+        auto;
+
+    color:
+        #dbeafe;
+
+    font-size:
+        18px;
+}
+
+
+.container-investimentos {
+
+    width:
+        min(1100px, 92%);
+
+    margin:
+        45px auto;
+}
+
+
+.aviso-investimentos {
+
+    margin-bottom:
+        30px;
+
+    padding:
+        20px;
+
+    color:
+        #334155;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid var(--borda);
+
+    border-radius:
+        15px;
+
+    box-shadow:
+        var(--sombra);
+}
+
+
+.aviso-investimentos strong {
+
+    color:
+        var(--azul-marinho);
+}
+
+
+.grid-bancos {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        22px;
+}
+
+
+.card-banco {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    padding:
+        28px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--borda);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        var(--sombra);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.card-banco:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 35px
+        rgba(
+            15,
+            23,
+            42,
+            0.12
+        );
+}
+
+
+.icone-banco {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    margin-bottom:
+        18px;
+
+    color:
+        white;
+
+    background:
+        var(--azul);
+
+    border-radius:
+        16px;
+
+    font-size:
+        30px;
+}
+
+
+.card-banco h2 {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--azul-marinho);
+
+    font-size:
+        23px;
+}
+
+
+.card-banco p {
+
+    flex-grow:
+        1;
+
+    margin-bottom:
+        20px;
+
+    color:
+        var(--texto-secundario);
+}
+
+
+.botao-banco {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        100%;
+
+    min-height:
+        46px;
+
+    padding:
+        10px 18px;
+
+    color:
+        white;
+
+    background:
+        var(--azul);
+
+    border-radius:
+        9px;
+
+    font-weight:
+        800;
+
+    text-decoration:
+        none;
+
+    transition:
+        0.2s;
+}
+
+
+.botao-banco:hover {
+
+    color:
+        white;
+
+    background:
+        var(--azul-hover);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.voltar-investimentos {
+
+    display:
+        block;
+
+    width:
+        fit-content;
+
+    margin:
+        45px auto 0;
+
+    padding:
+        13px 25px;
+
+    color:
+        var(--azul);
+
+    background:
+        var(--azul-claro);
+
+    border-radius:
+        10px;
+
+    font-weight:
+        800;
+
+    text-decoration:
+        none;
+
+    transition:
+        0.2s;
+}
+
+
+.voltar-investimentos:hover {
+
+    color:
+        white;
+
+    background:
+        var(--azul);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
 
     padding:
         50px 8%;
 
-    text-align: center;
+    text-align:
+        center;
 
-    color: white;
+    color:
+        white;
 
     background:
         var(--azul-marinho);
@@ -1125,7 +1494,8 @@ footer {
 
 footer h2 {
 
-    margin-bottom: 8px;
+    margin-bottom:
+        8px;
 
     color:
         #bfdbfe;
@@ -1134,14 +1504,17 @@ footer h2 {
 
 footer p {
 
-    margin-bottom: 5px;
+    margin-bottom:
+        5px;
 
     color:
         #dbeafe;
 }
 
 
-/* ================= RESPONSIVO ================= */
+/* =========================================================
+   RESPONSIVO - 1150px
+========================================================= */
 
 @media (max-width: 1150px) {
 
@@ -1154,17 +1527,30 @@ footer p {
 
     .botao-adicionar {
 
-        width: 100%;
+        width:
+            100%;
+    }
+
+
+    .inicio {
+
+        gap:
+            40px;
     }
 
 }
 
 
+/* =========================================================
+   RESPONSIVO - 900px
+========================================================= */
+
 @media (max-width: 900px) {
 
     .header {
 
-        flex-direction: column;
+        flex-direction:
+            column;
 
         padding:
             15px 5%;
@@ -1176,7 +1562,8 @@ footer p {
         gap:
             15px 22px;
 
-        flex-wrap: wrap;
+        flex-wrap:
+            wrap;
 
         justify-content:
             center;
@@ -1185,7 +1572,8 @@ footer p {
 
     .inicio {
 
-        flex-direction: column;
+        flex-direction:
+            column;
 
         padding:
             70px 5%;
@@ -1204,9 +1592,11 @@ footer p {
 
     .cartao-saldo {
 
-        width: 100%;
+        width:
+            100%;
 
-        max-width: 430px;
+        max-width:
+            430px;
 
         text-align:
             left;
@@ -1226,8 +1616,19 @@ footer p {
             1fr;
     }
 
+
+    .grid-bancos {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
 }
 
+
+/* =========================================================
+   RESPONSIVO - 700px
+========================================================= */
 
 @media (max-width: 700px) {
 
@@ -1255,7 +1656,8 @@ footer p {
 
     .acoes button {
 
-        width: 100%;
+        width:
+            100%;
     }
 
 
@@ -1268,22 +1670,84 @@ footer p {
 
     .investimentos-acao {
 
-        width: 100%;
+        width:
+            100%;
     }
 
 
     .botao-investimentos {
 
-        width: 100%;
+        width:
+            100%;
 
         text-align:
             center;
     }
 
+
+    .grid-bancos {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .container-investimentos {
+
+        width:
+            94%;
+    }
+
+
+    .topo-investimentos {
+
+        padding:
+            50px 20px;
+    }
+
 }
 
 
+/* =========================================================
+   RESPONSIVO - 450px
+========================================================= */
+
 @media (max-width: 450px) {
+
+    .header {
+
+        padding:
+            14px 4%;
+    }
+
+
+    .logo {
+
+        font-size:
+            22px;
+    }
+
+
+    nav {
+
+        gap:
+            10px 15px;
+    }
+
+
+    nav a {
+
+        font-size:
+            13px;
+    }
+
+
+    .inicio h1 {
+
+        font-size:
+            36px;
+    }
+
 
     .mini-resumo {
 
@@ -1299,10 +1763,34 @@ footer p {
     }
 
 
+    .cartao-saldo > strong {
+
+        font-size:
+            35px;
+    }
+
+
     .mensagem-resultado {
 
         align-items:
             flex-start;
+
+        flex-direction:
+            column;
+    }
+
+
+    .botao-investimentos {
+
+        padding:
+            14px 18px;
+    }
+
+
+    .card-banco {
+
+        padding:
+            22px;
     }
 
 }
